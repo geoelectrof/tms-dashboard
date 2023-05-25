@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <nav>
       {/* <NavLink to='/'>Summary</NavLink>
-        <NavLink to='/transfers'>Transfers</NavLink>
+        <NavLink to='/shipments'>Shipments</NavLink>
         <NavLink to='/performance'>Performance</NavLink> */}
       <Navbar collapseOnSelect expand="md" bg="light" className="bg-light">
         <Container>
@@ -30,11 +30,11 @@ const Navigation = () => {
               </LinkContainer>
 
               <LinkContainer
-                to="/transfers"
+                to="/shipments"
                 activeClassName="text-primary"
                 className="nav-item nav-link"
               >
-                <Nav.Link>Transfers</Nav.Link>
+                <Nav.Link>Shipments</Nav.Link>
               </LinkContainer>
 
               <LinkContainer

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Performance from './components/Performance'
-import Transfers from './components/Transfers'
+import Shipments from './components/Shipments'
+import SingleShipment from './components/singleShipment'
 import Summary from './components/Summary'
 import SharedLayout from './components/SharedLayout'
 
@@ -14,7 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Summary />} />
-          <Route path="transfers" element={<Transfers />} />
+          <Route path="shipments" element={<Shipments />} />
+          <Route path="shipments/:shipmentId" element={<SingleShipment />} />
           <Route path="performance" element={<Performance />} />
         </Route>
       </Routes>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "customerName": "Papadopoulos Nikos",
+    "originAdress": "Athens",
+    "destinationAdress": "Thessaloniki",
+    "carrierName": "DHL",
+    "deliveryDate": "2023-06-25",
+    "status": "in transit"
+  },
+  {
+    "id": 2,
+    "customerName": "Georgakopoulos Dimitris",
+    "originAdress": "Athens",
+    "destinationAdress": "Thessaloniki",
+    "carrierName": "ACS",
+    "deliveryDate": "2023-03-25",
+    "status": "delivered"
+  },
+  {
+    "id": 3,
+    "customerName": "Dan Brown",
+    "originAdress": "London",
+    "destinationAdress": "Paris",
+    "carrierName": "DHL",
+    "deliveryDate": "2023-05-10",
+    "status": "delayed"
+  },
+  {
+    "id": 4,
+    "customerName": "Ioannis Xenakis",
+    "originAdress": "New York",
+    "destinationAdress": "Athens",
+    "carrierName": "UPS",
+    "deliveryDate": "2023-06-15",
+    "status": "in transit"
+  }
+]
