@@ -3,7 +3,8 @@ import Performance from './components/Performance'
 import Transfers from './components/Transfers'
 import Summary from './components/Summary'
 import SharedLayout from './components/SharedLayout'
-import './App.css'
+
+import './App.scss'
 
 function App() {
 
