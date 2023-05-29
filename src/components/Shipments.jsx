@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { LinkContainer } from "react-router-bootstrap"
 import { Container, Row, Col, Button } from "react-bootstrap"
+import ShipmentCard from "./ShipmentCard"
 
 const Shipments = () => {
     const { shipments } = useSelector(state => state.shipments)
@@ -31,13 +32,15 @@ const Shipments = () => {
         {shipments.map((shipment) => {
           // console.log('shipment', shipment)
           return (
-            <div key={shipment.id}>
-              <h1>{shipment.id}</h1>
-              <h2>{shipment.customerName}</h2>
-              <LinkContainer to={`/shipments/${shipment.id}`}>
-                <button>More info</button>
-              </LinkContainer>
-            </div>
+            <ShipmentCard 
+                key={shipment.id}
+                // {...shipment}
+                id={shipment.id}
+                originAddress={shipment.originAddress}
+                destinationAddress={shipment.destinationAddress}
+                carrierName={shipment.carrierName}
+                status={shipment.status}
+            />
           );
         })}
       </Container>
