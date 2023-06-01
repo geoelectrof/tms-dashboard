@@ -50,7 +50,9 @@ const Shipments = () => {
     console.log("e.currentTarget.checked", e.currentTarget.checked);
   };
 
-  
+  const handleRemoveFilters = () => {
+    setFilters({ status: [], carrierName: [] });
+  }
 
   // ignores case-sensitive
   const getValue = (value) =>
@@ -185,6 +187,8 @@ const Shipments = () => {
         status={status}
         handleCarrierClick={handleCarrierClick}
         handleStatusClick={handleStatusClick}
+        checkFilters={checkFilters}
+        handleRemoveFilters={handleRemoveFilters}
       />
     </>
   );

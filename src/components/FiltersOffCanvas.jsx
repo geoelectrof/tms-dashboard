@@ -3,7 +3,7 @@ import { closeFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCa
 import { useDispatch, useSelector } from "react-redux"
 
 
-const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handleStatusClick }) => {
+const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handleStatusClick,checkFilters, handleRemoveFilters }) => {
 
     const dispatch = useDispatch()
     const show = useSelector(state => state.filtersOffCanvas.open)
@@ -61,6 +61,8 @@ const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handl
                 variant="danger text-white" 
                 className="mt-4"
                 size="sm"
+                disabled={!checkFilters(filters)}
+                onClick={handleRemoveFilters}
             >
                 Remove filters
             </Button>
