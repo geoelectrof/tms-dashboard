@@ -1,9 +1,9 @@
-import { Offcanvas, ToggleButton, Form } from "react-bootstrap"
+import { Offcanvas, Form, Button } from "react-bootstrap"
 import { closeFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { useState } from "react"
 
-const FiltersOffCanvas = ({ filters, carriers, handleCarrierClick }) => {
+
+const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handleStatusClick }) => {
 
     const dispatch = useDispatch()
     const show = useSelector(state => state.filtersOffCanvas.open)
@@ -43,6 +43,27 @@ const FiltersOffCanvas = ({ filters, carriers, handleCarrierClick }) => {
                 )
             })}
             <h6 className="pt-4">Status</h6>
+            {status.map(item => {
+                const checked = filters.status.includes(item)
+                return (
+                  <Form.Check
+                    key={item}
+                    type="checkbox"
+                    id={item}
+                    label={item}
+                    value={item}
+                    checked={checked}
+                    onChange={handleStatusClick}
+                  />
+                );
+            })}
+            <Button 
+                variant="danger text-white" 
+                className="mt-4"
+                size="sm"
+            >
+                Remove filters
+            </Button>
         </Offcanvas.Body>
       </Offcanvas>
     );

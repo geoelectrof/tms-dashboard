@@ -11,15 +11,16 @@ const Shipments = () => {
 
   const dispatch = useDispatch()
   
-  const [selectedStatus, setSelectedStatus] = useState("all");
-  const [selectedCarrier, setSelectedCarrier] = useState("");
   const [filters, setFilters] = useState({status: [], carrierName:[] })
-  const [filtersActive, setFiltersActive] = useState(false)
   const [filteredShipments, setFilteredShipments] = useState([])
 
   const carriers = [
     ...new Set(shipments.map((shipment) => shipment.carrierName)),
   ];
+
+  const status = [
+    ...new Set(shipments.map(shipment => shipment.status))
+  ]
 
   const handleCarrierClick = (e) => {
     let newCarriersNameArray;
@@ -35,8 +36,21 @@ const Shipments = () => {
     console.log("e.currentTarget.checked", e.currentTarget.checked);
   };
 
+  const handleStatusClick = (e) => {
+    let newStatusArray;
+    if (e.currentTarget.checked) {
+      newStatusArray = filters.status.concat(e.currentTarget.value)
+    } else if (!e.currentTarget.checked) {
+      newStatusArray = filters.status.filter(item => item !== e.currentTarget.value)
+    }
+    setFilters(filters => ({
+      ...filters,
+      status: newStatusArray
+    }))
+    console.log("e.currentTarget.checked", e.currentTarget.checked);
+  };
 
-  // console.log(carriers);
+  
 
   // ignores case-sensitive
   const getValue = (value) =>
@@ -63,12 +77,12 @@ const Shipments = () => {
     });
   }
 
-    let checkFilters = (filters) => {
-      const filterKeys = Object.keys(filters);
-      return filterKeys.some((key) => {
-        return filters[key].length;
-      });
-    };
+  let checkFilters = (filters) => {
+    const filterKeys = Object.keys(filters);
+    return filterKeys.some((key) => {
+      return filters[key].length;
+    });
+  };
 
   useEffect(() => {
       setFilteredShipments(filterPlainArray(shipments, filters))  
@@ -89,12 +103,10 @@ const Shipments = () => {
            
           </Col>
           <Col className="text-end">
-
             <Button
               variant="primary text-white fw-bold w-5 rounded-pill mt-2"
-              className="new-invoice-btn"
             >
-              + New Invoice
+              + New Shipment
             </Button>
             <div>
               <Button
@@ -111,7 +123,6 @@ const Shipments = () => {
               return (
                 <ShipmentCard
                   key={shipment.id}
-                  // {...shipment}
                   id={shipment.id}
                   originAddress={shipment.originAddress}
                   destinationAddress={shipment.destinationAddress}
@@ -120,11 +131,11 @@ const Shipments = () => {
                 />
               );
             })
-          : filteredShipments.map((shipment) => {
+          : filteredShipments.length 
+            ? (filteredShipments.map((shipment) => {
               return (
                 <ShipmentCard
                   key={shipment.id}
-                  // {...shipment}
                   id={shipment.id}
                   originAddress={shipment.originAddress}
                   destinationAddress={shipment.destinationAddress}
@@ -132,7 +143,12 @@ const Shipments = () => {
                   status={shipment.status}
                 />
               );
-            })}
+            }))
+            : <div>No items to display</div>
+        }
+        
+        {}
+
         {/* {selectedStatus == "all"
         ? shipments.map((shipment) => {
             return (
@@ -166,7 +182,9 @@ const Shipments = () => {
       <FiltersOffCanvas 
         filters={filters}
         carriers={carriers}
+        status={status}
         handleCarrierClick={handleCarrierClick}
+        handleStatusClick={handleStatusClick}
       />
     </>
   );
