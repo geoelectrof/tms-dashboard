@@ -17,25 +17,10 @@ const Shipments = () => {
   const [filtersActive, setFiltersActive] = useState(false)
   const [filteredShipments, setFilteredShipments] = useState([])
 
+
   const carriers = [
     ...new Set(shipments.map((shipment) => shipment.carrierName)),
   ];
-
-  const handleCarrierClick = (e) => {
-    let newCarriersNameArray;
-    if (e.currentTarget.checked) {
-      newCarriersNameArray = filters.carrierName.concat(e.currentTarget.value)
-    } else if (!e.currentTarget.checked) {
-      newCarriersNameArray = filters.carrierName.filter(item => item !== e.currentTarget.value)
-    }
-    setFilters(filters => ({
-      ...filters,
-      carrierName: newCarriersNameArray
-    }))
-    console.log("e.currentTarget.checked", e.currentTarget.checked);
-  };
-
-
   // console.log(carriers);
 
   // ignores case-sensitive
@@ -71,11 +56,26 @@ const Shipments = () => {
     };
 
   useEffect(() => {
-      setFilteredShipments(filterPlainArray(shipments, filters))  
+    setFiltersActive(checkFilters(filters))
+    filtersActive && (
+      setFilteredShipments(filterPlainArray(shipments, filters))
+    )
   }
   ,[filters])
 
-  // console.log("filters", filters)
+  console.log("filters", filters)
+
+
+  // const handleSelectStatus = (e) => {
+  //   setSelectedStatus(e.target.value);
+  // };
+
+  // const handleSelectCarrier = (e) => {
+  //   console.log(e);
+  //   console.log(e.target.value);
+  //   console.log(e.target.checked);
+  //   // setSelectedCarrier(e);
+  // };
 
   return (
     <>
@@ -86,10 +86,58 @@ const Shipments = () => {
             <p className="text-secondary">7 total shipments</p>
           </Col>
           <Col>
-           
+            {/* <Dropdown>
+            <Dropdown.Toggle variant="primary text-white" id="dropdown-basic">
+              {
+                <span className="fw-bold">
+                  {selectedCarrier || <span>Filter by Status: </span>}{" "}
+                </span>
+              }
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item>
+
+              <Form.Check
+                type="checkbox"
+                id="m&m"
+                label="m&m"
+                value="m&m"
+                onChange={handleSelectCarrier}
+                />
+                </Dropdown.Item>
+              <Dropdown.Item eventKey="DHL">DHL</Dropdown.Item>
+              <Dropdown.Item eventKey="ACS">ACS</Dropdown.Item>
+              <Dropdown.Item eventKey="UPS">UPS</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown> */}
+
+            {/* <Dropdown onSelect={handleSelectCarrier}>
+            <Dropdown.Toggle variant="primary text-white" id="dropdown-basic">
+              {
+                <span className="fw-bold">
+                  {selectedCarrier || <span>Filter by Status: </span>}{" "}
+                </span>
+              }
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="DHL">DHL</Dropdown.Item>
+              <Dropdown.Item eventKey="ACS">ACS</Dropdown.Item>
+              <Dropdown.Item eventKey="UPS">UPS</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown> */}
           </Col>
           <Col className="text-end">
-
+            {/* <label>
+            Filter by status:
+            <select onChange={handleSelectStatus} name="status" id="status" className="selectpicker" title="choose one" >
+              <option value="all">All shipments</option>
+              <option value="in transit">In transit</option>
+              <option value="delayed">Delayed</option>
+              <option value="delivered">Delivered</option>
+            </select>
+          </label> */}
             <Button
               variant="primary text-white fw-bold w-5 rounded-pill mt-2"
               className="new-invoice-btn"
@@ -106,7 +154,7 @@ const Shipments = () => {
             </div>
           </Col>
         </Row>
-        {!checkFilters(filters)
+        {!filtersActive
           ? shipments.map((shipment) => {
               return (
                 <ShipmentCard
@@ -163,11 +211,7 @@ const Shipments = () => {
               );
             })} */}
       </Container>
-      <FiltersOffCanvas 
-        filters={filters}
-        carriers={carriers}
-        handleCarrierClick={handleCarrierClick}
-      />
+      <FiltersOffCanvas />
     </>
   );
 }
