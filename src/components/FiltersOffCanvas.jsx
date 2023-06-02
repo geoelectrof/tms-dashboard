@@ -7,7 +7,6 @@ const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handl
 
     const dispatch = useDispatch()
     const show = useSelector(state => state.filtersOffCanvas.open)
-    console.log(filters.carrierName.includes("ACS"))
 
     return (
       <Offcanvas

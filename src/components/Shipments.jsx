@@ -5,6 +5,7 @@ import { Container, Row, Col, Button, Dropdown, Form } from "react-bootstrap"
 import ShipmentCard from "./ShipmentCard"
 import FiltersOffCanvas from "./FiltersOffCanvas"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
+import { removeShipment } from "../features/transports/shipmentsSlice"
 
 const Shipments = () => {
   const { shipments } = useSelector((state) => state.shipments);
@@ -33,7 +34,6 @@ const Shipments = () => {
       ...filters,
       carrierName: newCarriersNameArray
     }))
-    console.log("e.currentTarget.checked", e.currentTarget.checked);
   };
 
   const handleStatusClick = (e) => {
@@ -47,7 +47,6 @@ const Shipments = () => {
       ...filters,
       status: newStatusArray
     }))
-    console.log("e.currentTarget.checked", e.currentTarget.checked);
   };
 
   const handleRemoveFilters = () => {
@@ -88,8 +87,14 @@ const Shipments = () => {
 
   useEffect(() => {
       setFilteredShipments(filterPlainArray(shipments, filters))  
-  }
-  ,[filters])
+    }
+    ,[filters, shipments])
+
+  // const handleRemoveShipment = (id) => {
+  //   dispatch(removeShipment(id))
+  // }
+
+    // setFilteredShipments(filterPlainArray(shipments, filters))
 
   // console.log("filters", filters)
 
@@ -130,6 +135,7 @@ const Shipments = () => {
                   destinationAddress={shipment.destinationAddress}
                   carrierName={shipment.carrierName}
                   status={shipment.status}
+                  // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
             })
@@ -143,43 +149,12 @@ const Shipments = () => {
                   destinationAddress={shipment.destinationAddress}
                   carrierName={shipment.carrierName}
                   status={shipment.status}
+                  // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
             }))
             : <div>No items to display</div>
-        }
-        
-        {}
-
-        {/* {selectedStatus == "all"
-        ? shipments.map((shipment) => {
-            return (
-              <ShipmentCard
-                key={shipment.id}
-                // {...shipment}
-                id={shipment.id}
-                originAddress={shipment.originAddress}
-                destinationAddress={shipment.destinationAddress}
-                carrierName={shipment.carrierName}
-                status={shipment.status}
-              />
-            );
-          })
-        : shipments
-            .filter((shipment) => shipment.status === selectedStatus)
-            .map((shipment) => {
-              return (
-                <ShipmentCard
-                  key={shipment.id}
-                  // {...shipment}
-                  id={shipment.id}
-                  originAddress={shipment.originAddress}
-                  destinationAddress={shipment.destinationAddress}
-                  carrierName={shipment.carrierName}
-                  status={shipment.status}
-                />
-              );
-            })} */}
+        }      
       </Container>
       <FiltersOffCanvas 
         filters={filters}

@@ -1,7 +1,12 @@
 import { LinkContainer } from "react-router-bootstrap";
 import { Row, Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { removeShipment } from "../features/transports/shipmentsSlice";
 
-const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierName}) => {
+const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierName, handleRemoveShipment}) => {
+ 
+  const dispatch = useDispatch()
+  
   return (
     <>
       {/* <div>ShipmentCard</div> */}
@@ -24,8 +29,15 @@ const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierNa
           <Col>
             <p className="text-end">{status}</p>
           </Col>
+          <Col>
+          </Col>
         </Row>
       </LinkContainer>
+            <button
+              onClick={()=>dispatch(removeShipment(id))}
+            >
+              delete
+            </button>
     </>
   );
 }

@@ -21,7 +21,6 @@ const Shipments = () => {
   const carriers = [
     ...new Set(shipments.map((shipment) => shipment.carrierName)),
   ];
-  // console.log(carriers);
 
   // ignores case-sensitive
   const getValue = (value) =>
@@ -62,8 +61,6 @@ const Shipments = () => {
     )
   }
   ,[filters])
-
-  console.log("filters", filters)
 
 
   // const handleSelectStatus = (e) => {

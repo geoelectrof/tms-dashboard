@@ -16,8 +16,6 @@ const Summary = () => {
     }
     return acc
   } , {inTransit: 0, delayed:0, delivered:0})
-  console.log("inTransit", shipmentsCountByStatus.inTransit )
-  console.log("delivered", shipmentsCountByStatus.delivered )
 
   return (
     <div>
