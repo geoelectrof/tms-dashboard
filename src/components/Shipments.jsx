@@ -4,8 +4,10 @@ import { LinkContainer } from "react-router-bootstrap"
 import { Container, Row, Col, Button, Dropdown, Form } from "react-bootstrap"
 import ShipmentCard from "./ShipmentCard"
 import FiltersOffCanvas from "./FiltersOffCanvas"
+import NewShipmentModal from "./NewShipmentModal"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
 import { addShipment } from "../features/transports/shipmentsSlice"
+import { showNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice"
 
 const Shipments = () => {
 
@@ -123,7 +125,8 @@ const Shipments = () => {
           <Col className="text-end">
             <Button
               variant="primary text-white fw-bold w-5 rounded-pill mt-2"
-              onClick={()=>dispatch(addShipment(testShipment))}
+              onClick={()=>dispatch(showNewShipmentModal())}
+              // onClick={()=>dispatch(addShipment(testShipment))}
             >
               + New Shipment
             </Button>
@@ -177,6 +180,7 @@ const Shipments = () => {
         checkFilters={checkFilters}
         handleRemoveFilters={handleRemoveFilters}
       />
+      <NewShipmentModal />
     </>
   );
 }
