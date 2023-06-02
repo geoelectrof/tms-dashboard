@@ -9,6 +9,9 @@ const shipmentsSlice = createSlice({
     name: 'shipments',
     initialState,
     reducers: {
+        addShipment: (state, action) => {
+            state.shipments.push(action.payload)
+        },
         removeShipment: (state, action) => {
             const shipmentId = action.payload
             const newShipments = state.shipments.filter(shipment => {
@@ -22,4 +25,4 @@ const shipmentsSlice = createSlice({
 // console.log(shipmentsSlice)
 
 export default shipmentsSlice.reducer
-export const { removeShipment } = shipmentsSlice.actions
+export const { addShipment, removeShipment } = shipmentsSlice.actions

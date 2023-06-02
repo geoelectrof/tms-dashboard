@@ -5,9 +5,20 @@ import { Container, Row, Col, Button, Dropdown, Form } from "react-bootstrap"
 import ShipmentCard from "./ShipmentCard"
 import FiltersOffCanvas from "./FiltersOffCanvas"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
-import { removeShipment } from "../features/transports/shipmentsSlice"
+import { addShipment } from "../features/transports/shipmentsSlice"
 
 const Shipments = () => {
+
+  const testShipment = {
+    id: 1,
+    customerName: "Papadopoulos Nikos",
+    originAddress: "Athens",
+    destinationAddress: "Thessaloniki",
+    carrierName: "DHL",
+    deliveryDate: "2023-06-25",
+    status: "in transit",
+  };
+
   const { shipments } = useSelector((state) => state.shipments);
 
   const dispatch = useDispatch()
@@ -112,6 +123,7 @@ const Shipments = () => {
           <Col className="text-end">
             <Button
               variant="primary text-white fw-bold w-5 rounded-pill mt-2"
+              onClick={()=>dispatch(addShipment(testShipment))}
             >
               + New Shipment
             </Button>
