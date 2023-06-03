@@ -6,21 +6,9 @@ import ShipmentCard from "./ShipmentCard"
 import FiltersOffCanvas from "./FiltersOffCanvas"
 import NewShipmentModal from "./NewShipmentModal"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
-import { addShipment } from "../features/transports/shipmentsSlice"
 import { showNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice"
 
 const Shipments = () => {
-
-  const testShipment = {
-    id: 1,
-    customerName: "Papadopoulos Nikos",
-    originAddress: "Athens",
-    destinationAddress: "Thessaloniki",
-    carrierName: "DHL",
-    deliveryDate: "2023-06-25",
-    status: "in transit",
-  };
-
   const { shipments } = useSelector((state) => state.shipments);
 
   const dispatch = useDispatch()
@@ -103,14 +91,6 @@ const Shipments = () => {
     }
     ,[filters, shipments])
 
-  // const handleRemoveShipment = (id) => {
-  //   dispatch(removeShipment(id))
-  // }
-
-    // setFilteredShipments(filterPlainArray(shipments, filters))
-
-  // console.log("filters", filters)
-
   return (
     <>
       <Container>
@@ -153,7 +133,7 @@ const Shipments = () => {
                   // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
-            })
+            }).reverse()
           : filteredShipments.length 
             ? (filteredShipments.map((shipment) => {
               return (
