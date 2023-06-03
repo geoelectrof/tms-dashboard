@@ -10,14 +10,12 @@ import FormInput from "./FormInput";
 function NewShipmentModal() {
     const dispatch = useDispatch()
     const show = useSelector(state => state.newShipmentModal.show)
-
+    
     const {shipments} = useSelector(state => state.shipments)
-    console.log(shipments)
-    let { id: newid } = shipments.reduce((prev, current) => {
+    let { id: newid } = shipments.length && shipments.reduce((prev, current) => {
       return ((prev.id > current.id) ? prev : current)
     })
     newid = newid + 1
-
 
     const [values, setValues] = useState({
       id: newid,
@@ -25,22 +23,15 @@ function NewShipmentModal() {
       originAddress: "",
       destinationAddress: "",
       carrierName: "",
-      estDeliveryDate: "",
+      deliveryDate: "",
       status: "in transit"
     })
 
     const onChange = (e) => {
-      setValues({ ...values, [e.target.name]: e.target.value });
-    };
-
-    const testShipment = {
-      id: 1,
-      customerName: "Papadopoulos Nikos",
-      originAddress: "Athens",
-      destinationAddress: "Thessaloniki",
-      carrierName: "DHL",
-      deliveryDate: "2023-06-25",
-      status: "in transit",
+      setValues({ ...values, [e.target.name]: e.target.value.toString() });
+      console.log(e.target.name, e.target.value)
+      console.log(values)
+      console.log(typeof values.status)
     };
 
     return (
@@ -55,9 +46,9 @@ function NewShipmentModal() {
                 name="customerName"
                 type="text"
                 placeholder="Customer Name"
-                errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                errorMessage="Please add customer's name!"
                 label="Cutomer Name"
-                pattern="^[A-Za-z0-9]{3,16}$"
+                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.customerName}
                 onChange={onChange}
@@ -66,9 +57,9 @@ function NewShipmentModal() {
                 name="originAddress"
                 type="text"
                 placeholder="Origin Address"
-                errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                errorMessage="Please add the addres of the shipment origin!"
                 label="Origin Address"
-                pattern="^[A-Za-z0-9]{3,16}$"
+                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.originAddress}
                 onChange={onChange}
@@ -77,9 +68,9 @@ function NewShipmentModal() {
                 name="destinationAddress"
                 type="text"
                 placeholder="Destination Address"
-                errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                errorMessage="Please add the address of the shipment destination!"
                 label="Destination Address"
-                pattern="^[A-Za-z0-9]{3,16}$"
+                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.destinationAddress}
                 onChange={onChange}
@@ -88,18 +79,18 @@ function NewShipmentModal() {
                 name="carrierName"
                 type="text"
                 placeholder="Carrier Name"
-                errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                errorMessage="Please add the carrier's name!"
                 label="Carrier Name"
-                pattern="^[A-Za-z0-9]{3,16}$"
+                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.carrierName}
                 onChange={onChange}
               />
               <FormInput
-                name="estDeliveryDate"
+                name="deliveryDate"
                 type="date"
                 placeholder="Estimated Delivery Date"
-                errorMessage="Username should be 3-16 characters and shouldn't include any special character!"
+                errorMessage="Please choose an estimated delivery time!"
                 label="Estimated Delivery Date"
                 required={true}
                 value={values.estDeliveryDate}
