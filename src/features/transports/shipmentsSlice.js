@@ -10,7 +10,12 @@ const shipmentsSlice = createSlice({
     initialState,
     reducers: {
         addShipment: (state, action) => {
-            state.shipments.push(action.payload)
+            let { id: newid } = state.shipments.reduce((prev, current) => {
+                return prev.id > current.id ? prev : current;
+            });
+            newid = newid + 1;
+            state.shipments.push({...action.payload, id: newid})
+            // state.shipments.push(action.payload)
         },
         removeShipment: (state, action) => {
             const shipmentId = action.payload

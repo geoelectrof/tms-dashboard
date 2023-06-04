@@ -4,21 +4,24 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { hideNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice";
 import { addShipment } from "../features/transports/shipmentsSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormInput from "./FormInput";
 
 function NewShipmentModal() {
     const dispatch = useDispatch()
     const show = useSelector(state => state.newShipmentModal.show)
     
-    const {shipments} = useSelector(state => state.shipments)
-    let { id: newid } = shipments.length && shipments.reduce((prev, current) => {
-      return ((prev.id > current.id) ? prev : current)
-    })
-    newid = newid + 1
+    // useEffect(() => {
+    //   const {shipments} = useSelector(state => state.shipments)
+    //   let { id: newid } = shipments.length && shipments.reduce((prev, current) => {
+    //     return ((prev.id > current.id) ? prev : current)
+    //   })
+    //   newid = newid + 1
+    //   console.log("hello")
+    // }, [])
 
     const [values, setValues] = useState({
-      id: newid,
+      // id: newid,
       customerName: "",
       originAddress: "",
       destinationAddress: "",
