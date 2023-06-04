@@ -4,30 +4,20 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { hideNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice";
 import { addShipment } from "../features/transports/shipmentsSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormInput from "./FormInput";
 
 function NewShipmentModal() {
     const dispatch = useDispatch()
     const show = useSelector(state => state.newShipmentModal.show)
-    
-    // useEffect(() => {
-    //   const {shipments} = useSelector(state => state.shipments)
-    //   let { id: newid } = shipments.length && shipments.reduce((prev, current) => {
-    //     return ((prev.id > current.id) ? prev : current)
-    //   })
-    //   newid = newid + 1
-    //   console.log("hello")
-    // }, [])
 
     const [values, setValues] = useState({
-      // id: newid,
       customerName: "",
       originAddress: "",
       destinationAddress: "",
       carrierName: "",
       deliveryDate: "",
-      status: "in transit"
+      // status: "in transit"
     })
 
     const onChange = (e) => {
@@ -96,7 +86,7 @@ function NewShipmentModal() {
                 errorMessage="Please choose an estimated delivery time!"
                 label="Estimated Delivery Date"
                 required={true}
-                value={values.estDeliveryDate}
+                value={values.deliveryDate}
                 onChange={onChange}
               />
             </Form>
@@ -111,7 +101,8 @@ function NewShipmentModal() {
                   originAddress: "",
                   destinationAddress: "",
                   carrierName: "",
-                  estDeliveryDate: "",
+                  deliveryDate: "",
+                  // status: "in transit"
                 })
               }}
             >
@@ -127,7 +118,8 @@ function NewShipmentModal() {
                   originAddress: "",
                   destinationAddress: "",
                   carrierName: "",
-                  estDeliveryDate: "",
+                  deliveryDate: "",
+                  // status: "in transit"
                 });
               }}
             >
