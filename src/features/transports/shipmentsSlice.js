@@ -26,9 +26,9 @@ const shipmentsSlice = createSlice({
             // console.log('deliveryDate>today', deliveryDate>today)
             // console.log('deliveryDate<today', deliveryDate<today)
             // console.log('deliveryDate==today', deliveryDate.getTime()==today.getTime())
-            const diffTime = Math.abs(today - deliveryDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            console.log('diffDays', diffDays)
+            // const diffTime = Math.abs(today - deliveryDate);
+            // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            // console.log('diffDays', diffDays)
             
             let status = "in transit"
             if (deliveryDate.getTime() < today.getTime()) {
@@ -48,7 +48,14 @@ const shipmentsSlice = createSlice({
             const shipmentId = action.payload
             const shipment = state.shipments.find(s => s.id == shipmentId)
             shipment.status = "delivered"
-
+        },
+        checkStatusChange: (state) => {
+            const todayDate = new Date().setHours(0, 0, 0, 0)
+            state.shipments.forEach( s => {
+                if (todayDate > new Date(s.deliveryDate ).setHours(0, 0, 0, 0) && s.status != "delivered") {
+                    s.status = "delayed"
+                }
+            })
         }
     }
 })
@@ -56,4 +63,4 @@ const shipmentsSlice = createSlice({
 // console.log(shipmentsSlice)
 
 export default shipmentsSlice.reducer
-export const { addShipment, removeShipment, setShipmentStatusDelivered } = shipmentsSlice.actions
+export const { addShipment, removeShipment, setShipmentStatusDelivered, checkStatusChange } = shipmentsSlice.actions
