@@ -3,12 +3,14 @@ import shipmentsSlice from "./features/transports/shipmentsSlice";
 import filtersOffCanvasSlice from "./features/filtersOffCanvas/filtersOffCanvasSlice";
 import newShipmentModalSlice from "./features/newShipmentModal/newShipmentModalSlice";
 import confirmationModalSlice from "./features/confirmationModal/confirmationModalSlice";
+import editShipmentModalSlice from "./features/editShipmentModal/editShipmentModalSlice";
 
 export const store = configureStore({
     reducer: {
         shipments: shipmentsSlice,
         filtersOffCanvas: filtersOffCanvasSlice,
         newShipmentModal: newShipmentModalSlice,
-        confirmationModal: confirmationModalSlice
+        confirmationModal: confirmationModalSlice,
+        editShipmentModal: editShipmentModalSlice
     },
 })

@@ -44,6 +44,26 @@ const shipmentsSlice = createSlice({
             })   
             state.shipments = newShipments
         },
+        editShipment: (state, action) => {
+            console.log(action.payload.id)
+            console.log(action.payload.customerName)
+            const shipmentId = action.payload.id
+            state.shipments = state.shipments.map((shipment) => {
+                if (shipmentId == shipment.id ) {
+                    let today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    let deliveryDate = new Date(action.payload.deliveryDate);
+                    deliveryDate.setHours(0, 0, 0, 0);
+                    let status = "in transit";
+                    if (deliveryDate.getTime() < today.getTime()) {
+                      status = "delayed";
+                    }
+                    return {...action.payload, status: status}
+                }
+                return shipment
+            })
+            
+        },
         setShipmentStatusDelivered: (state, action) => {
             const shipmentId = action.payload
             const shipment = state.shipments.find(s => s.id == shipmentId)
@@ -63,4 +83,4 @@ const shipmentsSlice = createSlice({
 // console.log(shipmentsSlice)
 
 export default shipmentsSlice.reducer
-export const { addShipment, removeShipment, setShipmentStatusDelivered, checkStatusChange } = shipmentsSlice.actions
+export const { addShipment, removeShipment, editShipment, setShipmentStatusDelivered, checkStatusChange } = shipmentsSlice.actions

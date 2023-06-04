@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { Button } from "react-bootstrap"
 import { removeShipment, setShipmentStatusDelivered } from "../features/transports/shipmentsSlice"
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice"
+import EditShipmentModal from "./EditShipmentModal"
+import { showEditShipmentModal } from "../features/editShipmentModal/editShipmentModalSlice"
+import ConfirmationModal from "./ConfirmationModal"
 
 const SingleShipment = () => {
     const { shipmentId } = useParams()
@@ -32,6 +35,14 @@ const SingleShipment = () => {
             Delete shipment
           </Button>
         </LinkContainer>
+        <Button
+          variant="secondary text-white"
+          onClick={() => {
+            dispatch(showEditShipmentModal())
+          }}
+        >
+          Edit shipment
+        </Button>
         {
           shipment.status !== "delivered" 
           && 
@@ -44,6 +55,10 @@ const SingleShipment = () => {
             <Button>Back to shipments</Button>
           </LinkContainer>
         </div>
+        <EditShipmentModal 
+          shipmentId={shipmentId}
+        />
+        <ConfirmationModal />
       </>
     );
 }

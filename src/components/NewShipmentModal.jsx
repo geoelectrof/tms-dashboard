@@ -41,7 +41,6 @@ function NewShipmentModal() {
                 placeholder="Customer Name"
                 errorMessage="Please add customer's name!"
                 label="Cutomer Name"
-                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.customerName}
                 onChange={onChange}
@@ -52,7 +51,6 @@ function NewShipmentModal() {
                 placeholder="Origin Address"
                 errorMessage="Please add the addres of the shipment origin!"
                 label="Origin Address"
-                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.originAddress}
                 onChange={onChange}
@@ -63,7 +61,6 @@ function NewShipmentModal() {
                 placeholder="Destination Address"
                 errorMessage="Please add the address of the shipment destination!"
                 label="Destination Address"
-                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.destinationAddress}
                 onChange={onChange}
@@ -74,7 +71,6 @@ function NewShipmentModal() {
                 placeholder="Carrier Name"
                 errorMessage="Please add the carrier's name!"
                 label="Carrier Name"
-                // pattern="^[A-Za-z0-9]{3,16}$"
                 required={true}
                 value={values.carrierName}
                 onChange={onChange}
@@ -82,7 +78,7 @@ function NewShipmentModal() {
               <FormInput
                 name="deliveryDate"
                 type="date"
-                placeholder="Estimated Delivery Date"
+                placeholder="dd-mm-yyyy"
                 errorMessage="Please choose an estimated delivery time!"
                 label="Estimated Delivery Date"
                 required={true}
@@ -102,8 +98,7 @@ function NewShipmentModal() {
                   destinationAddress: "",
                   carrierName: "",
                   deliveryDate: "",
-                  // status: "in transit"
-                })
+                });
               }}
             >
               Close
@@ -113,16 +108,14 @@ function NewShipmentModal() {
               onClick={() => {
                 dispatch(hideNewShipmentModal());
                 dispatch(addShipment(values));
-                dispatch(openConfirmationModal("added"))
+                dispatch(openConfirmationModal("added"));
                 setValues({
                   customerName: "",
                   originAddress: "",
                   destinationAddress: "",
                   carrierName: "",
                   deliveryDate: "",
-                  // status: "in transit"
                 });
-
               }}
             >
               Save Changes
