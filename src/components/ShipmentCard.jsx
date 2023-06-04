@@ -2,6 +2,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { removeShipment } from "../features/transports/shipmentsSlice";
+import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice";
 
 const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierName, handleRemoveShipment}) => {
  
@@ -34,7 +35,10 @@ const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierNa
         </Row>
       </LinkContainer>
             <button
-              onClick={()=>dispatch(removeShipment(id))}
+              onClick={()=>{
+                dispatch(removeShipment(id))
+                dispatch(openConfirmationModal("deleted"))
+              }}
             >
               delete
             </button>

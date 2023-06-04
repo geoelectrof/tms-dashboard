@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { hideNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice";
 import { addShipment } from "../features/transports/shipmentsSlice";
+import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice";
 import { useState } from "react";
 import FormInput from "./FormInput";
 
@@ -17,14 +18,13 @@ function NewShipmentModal() {
       destinationAddress: "",
       carrierName: "",
       deliveryDate: "",
-      // status: "in transit"
     })
 
     const onChange = (e) => {
       setValues({ ...values, [e.target.name]: e.target.value.toString() });
-      console.log(e.target.name, e.target.value)
-      console.log(values)
-      console.log(typeof values.status)
+      // console.log(e.target.name, e.target.value)
+      // console.log(values)
+      // console.log(typeof values.status)
     };
 
     return (
@@ -113,6 +113,7 @@ function NewShipmentModal() {
               onClick={() => {
                 dispatch(hideNewShipmentModal());
                 dispatch(addShipment(values));
+                dispatch(openConfirmationModal("added"))
                 setValues({
                   customerName: "",
                   originAddress: "",
@@ -121,6 +122,7 @@ function NewShipmentModal() {
                   deliveryDate: "",
                   // status: "in transit"
                 });
+
               }}
             >
               Save Changes

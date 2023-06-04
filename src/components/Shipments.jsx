@@ -5,6 +5,7 @@ import { Container, Row, Col, Button, Dropdown, Form } from "react-bootstrap"
 import ShipmentCard from "./ShipmentCard"
 import FiltersOffCanvas from "./FiltersOffCanvas"
 import NewShipmentModal from "./NewShipmentModal"
+import ConfirmationModal from "./ConfirmationModal"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
 import { showNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice"
 
@@ -98,7 +99,7 @@ const Shipments = () => {
         <Row>
           <Col>
             <h1 className="fw-bold">Shipments</h1>
-            <p className="text-secondary">7 total shipments</p>
+            {/* <p className="text-secondary">7 total shipments</p> */}
           </Col>
           <Col>
            
@@ -162,6 +163,7 @@ const Shipments = () => {
         handleRemoveFilters={handleRemoveFilters}
       />
       <NewShipmentModal />
+      <ConfirmationModal />
     </>
   );
 }

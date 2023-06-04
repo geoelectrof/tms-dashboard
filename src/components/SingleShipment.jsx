@@ -3,6 +3,7 @@ import { LinkContainer } from "react-router-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
 import { Button } from "react-bootstrap"
 import { removeShipment, setShipmentStatusDelivered } from "../features/transports/shipmentsSlice"
+import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice"
 
 const SingleShipment = () => {
     const { shipmentId } = useParams()
@@ -23,7 +24,10 @@ const SingleShipment = () => {
         <LinkContainer to="/shipments">
           <Button
             variant="danger text-white"
-            onClick={() => dispatch(removeShipment(shipment.id))}
+            onClick={() => {
+              dispatch(removeShipment(shipment.id))
+              dispatch(openConfirmationModal("deleted"))
+            }}
           >
             Delete shipment
           </Button>
