@@ -19,10 +19,16 @@ const shipmentsSlice = createSlice({
             })   
             state.shipments = newShipments
         },
+        setShipmentStatusDelivered: (state, action) => {
+            const shipmentId = action.payload
+            const shipment = state.shipments.find(s => s.id == shipmentId)
+            shipment.status = "delivered"
+
+        }
     }
 })
 
 // console.log(shipmentsSlice)
 
 export default shipmentsSlice.reducer
-export const { addShipment, removeShipment } = shipmentsSlice.actions
+export const { addShipment, removeShipment, setShipmentStatusDelivered } = shipmentsSlice.actions

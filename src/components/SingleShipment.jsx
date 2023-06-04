@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import { LinkContainer } from "react-router-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
 import { Button } from "react-bootstrap"
-import { removeShipment } from "../features/transports/shipmentsSlice"
+import { removeShipment, setShipmentStatusDelivered } from "../features/transports/shipmentsSlice"
 
 const SingleShipment = () => {
     const { shipmentId } = useParams()
@@ -21,17 +21,24 @@ const SingleShipment = () => {
         <h3>Estimated delivery date: {shipment.deliveryDate}</h3>
         <h3>{shipment.status}</h3>
         <LinkContainer to="/shipments">
-        <button
-          variant="danger text-white"
-          onClick={() => dispatch(removeShipment(shipment.id))}
-        >
-          Delete shipment
-        </button>
+          <Button
+            variant="danger text-white"
+            onClick={() => dispatch(removeShipment(shipment.id))}
+          >
+            Delete shipment
+          </Button>
         </LinkContainer>
+        {
+          shipment.status !== "delivered" 
+          && 
+          <Button
+            onClick={()=>dispatch(setShipmentStatusDelivered(shipmentId))}
+          >Set status to delivered</Button>
+        }
         <div>
-        <LinkContainer to="/shipments">
-          <Button>Back to shipments</Button>
-        </LinkContainer>
+          <LinkContainer to="/shipments">
+            <Button>Back to shipments</Button>
+          </LinkContainer>
         </div>
       </>
     );
