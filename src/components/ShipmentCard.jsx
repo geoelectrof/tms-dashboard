@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { removeShipment } from "../features/transports/shipmentsSlice";
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice";
+import { showWarningModal } from "../features/warningModal/warningModalSlice";
 
 const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierName, handleRemoveShipment}) => {
  
@@ -36,8 +37,7 @@ const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierNa
       </LinkContainer>
             <button
               onClick={()=>{
-                dispatch(removeShipment(id))
-                dispatch(openConfirmationModal("deleted"))
+                dispatch(showWarningModal({warningMessage: "Delete shipment?", id: id}))
               }}
             >
               delete

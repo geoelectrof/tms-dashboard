@@ -13,7 +13,7 @@ export default function ConfirmationModal(props) {
         <Modal
         // {...props}
         show={show}
-        size="lg"
+        size="md"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         >

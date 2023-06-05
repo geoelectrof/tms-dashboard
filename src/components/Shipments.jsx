@@ -8,6 +8,7 @@ import NewShipmentModal from "./NewShipmentModal"
 import ConfirmationModal from "./ConfirmationModal"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
 import { showNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice"
+import WarningModal from "./WarningModal"
 
 const Shipments = () => {
   const { shipments } = useSelector((state) => state.shipments);
@@ -163,6 +164,7 @@ const Shipments = () => {
         handleRemoveFilters={handleRemoveFilters}
       />
       <NewShipmentModal />
+      <WarningModal />
       <ConfirmationModal />
     </>
   );
