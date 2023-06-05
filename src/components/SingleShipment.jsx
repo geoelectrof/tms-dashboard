@@ -8,6 +8,8 @@ import EditShipmentModal from "./EditShipmentModal"
 import { showEditShipmentModal } from "../features/editShipmentModal/editShipmentModalSlice"
 import ConfirmationModal from "./ConfirmationModal"
 import { Navigate } from "react-router-dom"
+import { showWarningModal } from "../features/warningModal/warningModalSlice"
+import WarningModal from "./WarningModal"
 
 const SingleShipment = () => {
     const { shipmentId } = useParams()
@@ -29,17 +31,18 @@ const SingleShipment = () => {
         <h3>{shipment.carrierName}</h3>
         <h3>Estimated delivery date: {shipment.deliveryDate}</h3>
         <h3>{shipment.status}</h3>
-        <LinkContainer to="/shipments">
+        {/* <LinkContainer to="/shipments"> */}
           <Button
             variant="danger text-white"
             onClick={() => {
-              dispatch(removeShipment(shipment.id))
-              dispatch(openConfirmationModal("deleted"))
+              // dispatch(removeShipment(shipment.id))
+              // dispatch(openConfirmationModal("deleted"))
+              dispatch(showWarningModal({warningMessage: "Delete shipment?", id: shipment.id}))
             }}
           >
             Delete shipment
           </Button>
-        </LinkContainer>
+        {/* </LinkContainer> */}
         <Button
           variant="secondary text-white"
           onClick={() => {
@@ -64,6 +67,7 @@ const SingleShipment = () => {
           shipmentId={shipmentId}
         />
         <ConfirmationModal />
+        <WarningModal />
       </>
     );
 }

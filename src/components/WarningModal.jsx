@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { hideWarningModal } from "../features/warningModal/warningModalSlice";
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice";
 import { removeShipment } from "../features/transports/shipmentsSlice";
+import { LinkContainer } from "react-router-bootstrap";
 
 const WarningModal = () => {
 
@@ -11,6 +12,7 @@ const WarningModal = () => {
     const show = useSelector(state => state.warningModal.show)
     const warningMessage = useSelector(state => state.warningModal.warningMessage)
     const id = useSelector(state => state.warningModal.id)
+    console.log('id', id)
 
     return (
         <Modal
@@ -31,16 +33,19 @@ const WarningModal = () => {
             >
                 Cancel
             </Button>
-            <Button 
-                variant="primary text-white" 
-                onClick={() => {
-                    dispatch(removeShipment(id));
-                    dispatch(openConfirmationModal("deleted"));
-                    dispatch(hideWarningModal())
-                }}
-            >
-                Confirm
-            </Button>
+            <LinkContainer to="/shipments">
+                <Button 
+                    variant="primary text-white" 
+                    onClick={() => {
+                        dispatch(removeShipment(id));
+                        dispatch(openConfirmationModal("deleted"));
+                        dispatch(hideWarningModal())
+                    }}
+                    >
+                    Confirm
+                </Button>
+            </LinkContainer>
+
         </Modal.Footer>
         </Modal>
     )
