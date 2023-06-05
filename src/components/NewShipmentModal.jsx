@@ -21,6 +21,7 @@ function NewShipmentModal() {
     })
 
     const onChange = (e) => {
+      e.preventDe
       setValues({ ...values, [e.target.name]: e.target.value.toString() });
       // console.log(e.target.name, e.target.value)
       // console.log(values)
@@ -33,8 +34,19 @@ function NewShipmentModal() {
           <Modal.Header closeButton>
             <Modal.Title>ADD NEW SHIPMENT</Modal.Title>
           </Modal.Header>
+            <Form onSubmit={ (e) => {
+                e.preventDefault()
+                dispatch(hideNewShipmentModal());
+                dispatch(addShipment(values));
+                dispatch(openConfirmationModal("added"));
+                setValues({
+                  customerName: "",
+                  originAddress: "",
+                  destinationAddress: "",
+                  carrierName: "",
+                  deliveryDate: "",
+                });}}>
           <Modal.Body>
-            <Form>
               <FormInput
                 name="customerName"
                 type="text"
@@ -85,7 +97,6 @@ function NewShipmentModal() {
                 value={values.deliveryDate}
                 onChange={onChange}
               />
-            </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -104,23 +115,25 @@ function NewShipmentModal() {
               Close
             </Button>
             <Button
+              type="submit"
               variant="primary"
-              onClick={() => {
-                dispatch(hideNewShipmentModal());
-                dispatch(addShipment(values));
-                dispatch(openConfirmationModal("added"));
-                setValues({
-                  customerName: "",
-                  originAddress: "",
-                  destinationAddress: "",
-                  carrierName: "",
-                  deliveryDate: "",
-                });
-              }}
-            >
+              // onClick={() => {
+              //   dispatch(hideNewShipmentModal());
+              //   dispatch(addShipment(values));
+              //   dispatch(openConfirmationModal("added"));
+              //   setValues({
+              //     customerName: "",
+              //     originAddress: "",
+              //     destinationAddress: "",
+              //     carrierName: "",
+              //     deliveryDate: "",
+              //   });
+              // }}
+              >
               Save Changes
             </Button>
           </Modal.Footer>
+              </Form>
         </Modal>
       </>
     );
