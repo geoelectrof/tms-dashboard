@@ -8,6 +8,7 @@ import Error from './components/Error'
 import { useDispatch } from 'react-redux'
 import { checkStatusChange } from './features/transports/shipmentsSlice'
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 
 import './App.scss'
 import { useEffect } from 'react'
@@ -37,7 +38,8 @@ function App() {
           <Route path="shipments/:shipmentId" element={<SingleShipment />} />
           <Route path="shipments/:*" element={<Error />} />
           <Route path="performance" element={<Performance />} />
-          <Route path="*" element={<Error />} />
+          <Route path="error" element={<Error />} />
+          <Route path="*" element={<Navigate to="error" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
