@@ -21,7 +21,6 @@ function NewShipmentModal({ handleRemoveFilters }) {
     })
 
     const onChange = (e) => {
-      e.preventDe
       setValues({ ...values, [e.target.name]: e.target.value.toString() });
       // console.log(e.target.name, e.target.value)
       // console.log(values)

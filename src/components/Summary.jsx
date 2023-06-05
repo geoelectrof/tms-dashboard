@@ -1,5 +1,6 @@
 import { Button } from "react-bootstrap"
 import { useSelector } from "react-redux"
+import { Card, Container, Row, Col } from "react-bootstrap"
 
 const Summary = () => {
 
@@ -18,21 +19,53 @@ const Summary = () => {
   } , {inTransit: 0, delayed:0, delivered:0})
 
   return (
-    <div>
-        Summary
-        <div>Total Number of Shipments: {shipmentsTotalCount}</div>
-        <div>Number of Shipments in Transit: {shipmentsCountByStatus.inTransit}</div>
-        <div>Number of Shipments in Delayed: {shipmentsCountByStatus.delayed}</div>
-        <div>Number of Shipments in Delivered: {shipmentsCountByStatus.delivered}</div>
-        <Button variant="primary text-white fw-light">Hello world</Button>
-        <Button variant="secondary text-white fw-bold">Hello world</Button>
-        <Button variant="white text-secondary">Hello world</Button>
-        <Button variant="danger text-secondary">Hello world</Button>
-        <Button variant="warning text-secondary">Hello world</Button>
-        <Button variant="info text-white">Hello world</Button>
-        <Button variant="dark text-secondary">Hello world</Button>
-        <Button variant="light text-secondary">Hello world</Button>
-    </div>
-  )
+    <Container className="pt-4">
+      <Row className="pb-4">
+        <Col>
+          <h1 className="fw-bold">Summary</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Card className="bg-light">
+            <Card.Body>
+              Total Number of Shipments: {shipmentsTotalCount}
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="bg-secondary text-white">
+            <Card.Body>
+              Number of Shipments in Transit: {shipmentsCountByStatus.inTransit}
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="bg-danger text-white">
+            <Card.Body>
+              Number of Shipments Delayed: {shipmentsCountByStatus.delayed}
+            </Card.Body>
+          </Card>
+        </Col>
+
+        <Col>
+          <Card className="bg-primary text-white">
+            <Card.Body>
+              Number of Shipments Delivered: {shipmentsCountByStatus.delivered}
+            </Card.Body>
+          </Card>
+        </Col>
+        
+      </Row>
+      {/* <Button variant="primary text-white fw-light">Hello world</Button>
+      <Button variant="secondary text-white fw-bold">Hello world</Button>
+      <Button variant="white text-secondary">Hello world</Button>
+      <Button variant="danger text-secondary">Hello world</Button>
+      <Button variant="warning text-secondary">Hello world</Button>
+      <Button variant="info text-white">Hello world</Button>
+      <Button variant="dark text-secondary">Hello world</Button>
+      <Button variant="light text-secondary">Hello world</Button> */}
+    </Container>
+  );
 }
 export default Summary

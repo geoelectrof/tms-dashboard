@@ -21,11 +21,11 @@ const Shipments = () => {
   const [filteredShipments, setFilteredShipments] = useState([])
 
   const carriers = [
-    ...new Set(shipments.map((shipment) => shipment.carrierName)),
+    ...new Set(shipments.map((shipment) => shipment.carrierName.toUpperCase())),
   ];
 
   const status = [
-    ...new Set(shipments.map(shipment => shipment.status))
+    ...new Set(shipments.map(shipment => shipment.status.toUpperCase()))
   ]
 
   const handleCarrierClick = (e) => {
@@ -154,7 +154,7 @@ const Shipments = () => {
                 />
               );
             }))
-            : <div>No items to display</div>
+            : <div className="text-center display-6 mt-5">No shipments to display</div>
         }      
       </Container>
       <FiltersOffCanvas 
