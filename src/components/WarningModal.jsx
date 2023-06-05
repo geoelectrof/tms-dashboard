@@ -28,21 +28,21 @@ const WarningModal = () => {
         </Modal.Header>
         <Modal.Footer>
             <Button 
-                variant="primary text-white" 
+                variant="secondary text-white" 
                 onClick={() => dispatch(hideWarningModal())}
             >
                 Cancel
             </Button>
             <LinkContainer to="/shipments">
                 <Button 
-                    variant="primary text-white" 
+                    variant="danger text-white" 
                     onClick={() => {
                         dispatch(removeShipment(id));
                         dispatch(openConfirmationModal("deleted"));
                         dispatch(hideWarningModal())
                     }}
                     >
-                    Confirm
+                    Delete
                 </Button>
             </LinkContainer>
 

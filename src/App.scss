@@ -7,8 +7,25 @@
 // }
 
 // SHIPMENTS LISTING PAGE
-.new-invoice-btn {
-  min-width: 135px;
-  
+.new-shipment-btn {
+  min-width: 155px;
+}
 
+//SHIPMENT CARD
+.shipment-card{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+//SHINGLE SHIPMENT PAGE
+.back-btn {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+//OFF CANVAS FILTER
+.remove-filters-btn {
+  border: none;
 }

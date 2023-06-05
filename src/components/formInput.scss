@@ -12,22 +12,22 @@
 // }
 
 
-label{
+.formInput label{
     font-size: 12px;
     color: gray;
 }
 
-span{
+.formInput span{
     font-size: 12px;
     padding: 3px;
     color: red;
     display: none;
 }
 
-input:invalid[focused="true"]{
+.formInput input:invalid[focused="true"]{
     border: 1px solid red;
 }
 
-input:invalid[focused="true"] ~ span{
+.formInput input:invalid[focused="true"] ~ span{
     display: block;
 }

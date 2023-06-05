@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import { LinkContainer } from "react-router-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
-import { Button } from "react-bootstrap"
+import { Button, Col, Row, Container } from "react-bootstrap";
 import { removeShipment, setShipmentStatusDelivered } from "../features/transports/shipmentsSlice"
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice"
 import EditShipmentModal from "./EditShipmentModal"
@@ -10,6 +10,8 @@ import ConfirmationModal from "./ConfirmationModal"
 import { Navigate } from "react-router-dom"
 import { showWarningModal } from "../features/warningModal/warningModalSlice"
 import WarningModal from "./WarningModal"
+import { FaArrowLeft, FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
+
 
 const SingleShipment = () => {
     const { shipmentId } = useParams()
@@ -22,53 +24,88 @@ const SingleShipment = () => {
     }
 
     return (
-      <>
-        <div>SingleShipment</div>
-        <h2>{shipmentId}</h2>
-        <h3>{shipment.customerName}</h3>
-        <h3>{shipment.originAddress}</h3>
-        <h3>{shipment.destinationAddress}</h3>
-        <h3>{shipment.carrierName}</h3>
-        <h3>Estimated delivery date: {shipment.deliveryDate}</h3>
-        <h3>{shipment.status}</h3>
-        {/* <LinkContainer to="/shipments"> */}
-          <Button
-            variant="danger text-white"
-            onClick={() => {
-              // dispatch(removeShipment(shipment.id))
-              // dispatch(openConfirmationModal("deleted"))
-              dispatch(showWarningModal({warningMessage: "Delete shipment?", id: shipment.id}))
-            }}
-          >
-            Delete shipment
-          </Button>
-        {/* </LinkContainer> */}
-        <Button
-          variant="secondary text-white"
-          onClick={() => {
-            dispatch(showEditShipmentModal())
-          }}
-        >
-          Edit shipment
-        </Button>
-        {
-          shipment.status !== "delivered" 
-          && 
-          <Button
-            onClick={()=>dispatch(setShipmentStatusDelivered(shipmentId))}
-          >Set status to delivered</Button>
-        }
-        <div>
-          <LinkContainer to="/shipments">
-            <Button>Back to shipments</Button>
-          </LinkContainer>
-        </div>
-        <EditShipmentModal 
-          shipmentId={shipmentId}
-        />
+      <Container className="my-5">
+        <Row>
+          <Col>
+            <LinkContainer to="/shipments">
+              <button className="text-secondary fs-5 back-btn">
+                <FaArrowLeft /> Back to shipments
+              </button>
+            </LinkContainer>
+          </Col>
+          <Col className="text-end">
+            <Button
+              variant="secondary text-white"
+              onClick={() => {
+                dispatch(showEditShipmentModal());
+              }}
+            >
+              <FaPencilAlt /> Edit shipment
+            </Button>
+          </Col>
+        </Row>
+        <Container className="bg-light my-4 p-5">
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Id:</span>
+            <h3 className="text-primary"># {shipmentId}</h3>
+          </Row>
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Customer Name:</span>
+            <h3 className="text-primary">{shipment.customerName}</h3>
+          </Row>
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Shipping Address:</span>
+            <h3 className="text-primary">{shipment.originAddress}</h3>
+          </Row>
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Destination Address:</span>
+            <h3 className="text-primary">{shipment.destinationAddress}</h3>
+          </Row>
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Carrier:</span>
+            <h3 className="text-primary">{shipment.carrierName}</h3>
+          </Row>
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Estimated delivery date:</span>
+            <h3 className="text-primary"> {shipment.deliveryDate}</h3>
+          </Row>
+          <Row className="py-2">
+            <span className="text-muted fw-bold">Shipment status:</span>
+            <h3 className="text-primary">{shipment.status}</h3>
+          </Row>
+        </Container>
+        <Row>
+          <Col className="text-end">
+            {shipment.status !== "delivered" && (
+              <Button
+                onClick={() => dispatch(setShipmentStatusDelivered(shipmentId))}
+                variant="primary text-white"
+              >
+                Set status to delivered
+              </Button>
+            )}
+            <Button
+              variant="danger text-white mx-4"
+              onClick={() => {
+                // dispatch(removeShipment(shipment.id))
+                // dispatch(openConfirmationModal("deleted"))
+                dispatch(
+                  showWarningModal({
+                    warningMessage: "Delete shipment?",
+                    id: shipment.id,
+                  })
+                );
+              }}
+            >
+              <FaRegTrashAlt /> Delete shipment
+            </Button>
+
+          </Col>
+        </Row>
+        <EditShipmentModal shipmentId={shipmentId} />
         <ConfirmationModal />
         <WarningModal />
-      </>
+      </Container>
     );
 }
 export default SingleShipment

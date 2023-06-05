@@ -18,7 +18,7 @@ const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handl
           <Offcanvas.Title>Filters</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-            {/* <Form.Check
+          {/* <Form.Check
                 type="checkbox"
                 id="ACS"
                 label="ACS"
@@ -26,45 +26,54 @@ const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handl
                 onChange={handleCarrierClick}
             /> */}
 
-            <h6>Carriers</h6>
-            {carriers.map(item => {
-                const checked = filters.carrierName.includes(item);
-                return (
-                    <Form.Check 
-                        key={item}
-                        type="checkbox"
-                        id={item}
-                        label={item}
-                        value={item}
-                        checked={checked}
-                        onChange={handleCarrierClick}
-                    />
-                )
-            })}
-            <h6 className="pt-4">Status</h6>
-            {status.map(item => {
-                const checked = filters.status.includes(item)
-                return (
-                  <Form.Check
-                    key={item}
-                    type="checkbox"
-                    id={item}
-                    label={item}
-                    value={item}
-                    checked={checked}
-                    onChange={handleStatusClick}
-                  />
-                );
-            })}
-            <Button 
-                variant="danger text-white" 
-                className="mt-4"
-                size="sm"
-                disabled={!checkFilters(filters)}
-                onClick={handleRemoveFilters}
-            >
-                Remove filters
-            </Button>
+          <h6>Carriers</h6>
+          {carriers.map((item) => {
+            const checked = filters.carrierName.includes(item);
+            return (
+              <Form.Check
+                key={item}
+                type="checkbox"
+                id={item}
+                label={item}
+                value={item}
+                checked={checked}
+                onChange={handleCarrierClick}
+              />
+            );
+          })}
+          <h6 className="pt-4">Status</h6>
+          {status.map((item) => {
+            const checked = filters.status.includes(item);
+            return (
+              <Form.Check
+                key={item}
+                type="checkbox"
+                id={item}
+                label={item}
+                value={item}
+                checked={checked}
+                onChange={handleStatusClick}
+              />
+            );
+          })}
+          <Button
+            variant="primary text-white"
+            className="mt-4"
+            size="sm"
+            onClick={() => dispatch(closeFiltersOffCanvas())}
+          >
+            Done
+          </Button>
+          <br />
+          <Button
+            variant="white text-danger remove-filters-btn"
+            className="mt-2"
+            size="sm"
+            disabled={!checkFilters(filters)}
+            onClick={handleRemoveFilters}
+          >
+            Remove filters
+          </Button>
         </Offcanvas.Body>
       </Offcanvas>
     );

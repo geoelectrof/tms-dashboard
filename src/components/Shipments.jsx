@@ -9,6 +9,7 @@ import ConfirmationModal from "./ConfirmationModal"
 import { openFiltersOffCanvas } from "../features/filtersOffCanvas/filtersOffCanvasSlice"
 import { showNewShipmentModal } from "../features/newShipmentModal/newShipmentModalSlice"
 import WarningModal from "./WarningModal"
+import { BsFilter } from "react-icons/bs";
 
 const Shipments = () => {
   const { shipments } = useSelector((state) => state.shipments);
@@ -96,43 +97,44 @@ const Shipments = () => {
 
   return (
     <>
-      <Container>
+      <Container className="pt-4"> 
         <Row>
           <Col>
             <h1 className="fw-bold">Shipments</h1>
-            {/* <p className="text-secondary">7 total shipments</p> */}
-          </Col>
-          <Col>
-           
           </Col>
           <Col className="text-end">
             <Button
-              variant="primary text-white fw-bold w-5 rounded-pill mt-2"
+              variant="primary text-white fw-bold w-5 rounded-pill mt-2 new-shipment-btn"
               onClick={()=>dispatch(showNewShipmentModal())}
-              // onClick={()=>dispatch(addShipment(testShipment))}
             >
               + New Shipment
             </Button>
             <div>
-              <Button
-                variant="primary text-white rounded-pill mt-2 mb-2"
-                onClick={() => dispatch(openFiltersOffCanvas())}
-              >
-                Filter
-              </Button>
             </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Button
+              variant="outline-primary fw-bold rounded-pill mt-2 mb-2"
+              onClick={() => dispatch(openFiltersOffCanvas())}
+              >
+              <BsFilter />
+              Filters          
+            </Button>
           </Col>
         </Row>
         {!checkFilters(filters)
           ? shipments.map((shipment) => {
               return (
                 <ShipmentCard
-                  key={shipment.id}
-                  id={shipment.id}
-                  originAddress={shipment.originAddress}
-                  destinationAddress={shipment.destinationAddress}
-                  carrierName={shipment.carrierName}
-                  status={shipment.status}
+                {...shipment}
+                  // key={shipment.id}
+                  // id={shipment.id}
+                  // originAddress={shipment.originAddress}
+                  // destinationAddress={shipment.destinationAddress}
+                  // carrierName={shipment.carrierName}
+                  // status={shipment.status}
                   // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
@@ -141,12 +143,13 @@ const Shipments = () => {
             ? (filteredShipments.map((shipment) => {
               return (
                 <ShipmentCard
-                  key={shipment.id}
-                  id={shipment.id}
-                  originAddress={shipment.originAddress}
-                  destinationAddress={shipment.destinationAddress}
-                  carrierName={shipment.carrierName}
-                  status={shipment.status}
+                {...shipment}
+                  // key={shipment.id}
+                  // id={shipment.id}
+                  // originAddress={shipment.originAddress}
+                  // destinationAddress={shipment.destinationAddress}
+                  // carrierName={shipment.carrierName}
+                  // status={shipment.status}
                   // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
@@ -163,7 +166,9 @@ const Shipments = () => {
         checkFilters={checkFilters}
         handleRemoveFilters={handleRemoveFilters}
       />
-      <NewShipmentModal />
+      <NewShipmentModal
+        handleRemoveFilters={handleRemoveFilters}
+      />
       <WarningModal />
       <ConfirmationModal />
     </>

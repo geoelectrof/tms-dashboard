@@ -8,7 +8,7 @@ import { openConfirmationModal } from "../features/confirmationModal/confirmatio
 import { useState } from "react";
 import FormInput from "./FormInput";
 
-function NewShipmentModal() {
+function NewShipmentModal({ handleRemoveFilters }) {
     const dispatch = useDispatch()
     const show = useSelector(state => state.newShipmentModal.show)
 
@@ -34,19 +34,22 @@ function NewShipmentModal() {
           <Modal.Header closeButton>
             <Modal.Title>ADD NEW SHIPMENT</Modal.Title>
           </Modal.Header>
-            <Form onSubmit={ (e) => {
-                e.preventDefault()
-                dispatch(hideNewShipmentModal());
-                dispatch(addShipment(values));
-                dispatch(openConfirmationModal("added"));
-                setValues({
-                  customerName: "",
-                  originAddress: "",
-                  destinationAddress: "",
-                  carrierName: "",
-                  deliveryDate: "",
-                });}}>
-          <Modal.Body>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              dispatch(hideNewShipmentModal());
+              dispatch(addShipment(values));
+              dispatch(openConfirmationModal("added"));
+              setValues({
+                customerName: "",
+                originAddress: "",
+                destinationAddress: "",
+                carrierName: "",
+                deliveryDate: "",
+              });
+            }}
+          >
+            <Modal.Body>
               <FormInput
                 name="customerName"
                 type="text"
@@ -97,43 +100,44 @@ function NewShipmentModal() {
                 value={values.deliveryDate}
                 onChange={onChange}
               />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              onClick={() => {
-                dispatch(hideNewShipmentModal());
-                setValues({
-                  customerName: "",
-                  originAddress: "",
-                  destinationAddress: "",
-                  carrierName: "",
-                  deliveryDate: "",
-                });
-              }}
-            >
-              Close
-            </Button>
-            <Button
-              type="submit"
-              variant="primary"
-              // onClick={() => {
-              //   dispatch(hideNewShipmentModal());
-              //   dispatch(addShipment(values));
-              //   dispatch(openConfirmationModal("added"));
-              //   setValues({
-              //     customerName: "",
-              //     originAddress: "",
-              //     destinationAddress: "",
-              //     carrierName: "",
-              //     deliveryDate: "",
-              //   });
-              // }}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary text-white"
+                onClick={() => {
+                  dispatch(hideNewShipmentModal());
+                  setValues({
+                    customerName: "",
+                    originAddress: "",
+                    destinationAddress: "",
+                    carrierName: "",
+                    deliveryDate: "",
+                  });
+                }}
               >
-              Save Changes
-            </Button>
-          </Modal.Footer>
-              </Form>
+                Close
+              </Button>
+              <Button
+                type="submit"
+                variant="primary text-white"
+                onClick={handleRemoveFilters}
+                // onClick={() => {
+                //   dispatch(hideNewShipmentModal());
+                //   dispatch(addShipment(values));
+                //   dispatch(openConfirmationModal("added"));
+                //   setValues({
+                //     customerName: "",
+                //     originAddress: "",
+                //     destinationAddress: "",
+                //     carrierName: "",
+                //     deliveryDate: "",
+                //   });
+                // }}
+              >
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Form>
         </Modal>
       </>
     );

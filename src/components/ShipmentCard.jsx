@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeShipment } from "../features/transports/shipmentsSlice";
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice";
 import { showWarningModal } from "../features/warningModal/warningModalSlice";
+import { FaArrowRight } from "react-icons/fa";
 
 const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierName, handleRemoveShipment}) => {
  
@@ -11,37 +12,43 @@ const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierNa
   
   return (
     <>
-      {/* <div>ShipmentCard</div> */}
       <LinkContainer to={`/shipments/${id}`}>
-        <Row className="">
-          <Col sm={1}>
-            <p>{id}</p>
+        <Row className="shipment-card bg-light rounded-1 p-3 text-dark my-3 align-items-center g-2">
+          <Col sm={12} md={1}>
+            <span className="fs-5"># {id}</span>
           </Col>
-          <Col>
-            <p>
-              <span className="text-muted fs-6">From</span> <span className="fs-5">{originAddress}</span>
-            </p>
+          <Col sm={12} md={3}>
+
+              <span className="text-muted fs-6">From</span>{" "}
+              <span className="fs-6 text-primary fw-bold">{originAddress}</span>
+
           </Col>
-          <Col>
-            <p>{destinationAddress}</p>
+          <Col sm={12} md={3}>
+            <span className="text-muted fs-6">To</span>{" "}
+            <span className="fs-6 text-primary fw-bold">
+              {destinationAddress}
+            </span>
           </Col>
-          <Col sm={1}>
-            <p>{carrierName}</p>
+          <Col sm={12} md={2}>
+            <span className="fs-6 text-primary fw-bold">{carrierName}</span>
           </Col>
-          <Col>
-            <p className="text-end">{status}</p>
+          <Col sm={12} md={2}>
+            <span className="text-end">{status}</span>
           </Col>
-          <Col>
+          <Col className="text-end" sm={12} md={1}>
+            <FaArrowRight className="align-end" />
           </Col>
         </Row>
       </LinkContainer>
-            <button
-              onClick={()=>{
-                dispatch(showWarningModal({warningMessage: "Delete shipment?", id: id}))
-              }}
-            >
-              delete
-            </button>
+      {/* <button
+        onClick={() => {
+          dispatch(
+            showWarningModal({ warningMessage: "Delete shipment?", id: id })
+          );
+        }}
+      >
+        delete
+      </button> */}
     </>
   );
 }
