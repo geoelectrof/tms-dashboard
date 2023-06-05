@@ -4,6 +4,7 @@ import Shipments from './components/Shipments'
 import SingleShipment from './components/SingleShipment'
 import Summary from './components/Summary'
 import SharedLayout from './components/SharedLayout'
+import Error from './components/Error'
 import { useDispatch } from 'react-redux'
 import { checkStatusChange } from './features/transports/shipmentsSlice'
 import { useState } from 'react'
@@ -34,7 +35,9 @@ function App() {
           <Route index element={<Summary />} />
           <Route path="shipments" element={<Shipments />} />
           <Route path="shipments/:shipmentId" element={<SingleShipment />} />
+          <Route path="shipments/:*" element={<Error />} />
           <Route path="performance" element={<Performance />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </BrowserRouter>

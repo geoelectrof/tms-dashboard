@@ -7,12 +7,17 @@ import { openConfirmationModal } from "../features/confirmationModal/confirmatio
 import EditShipmentModal from "./EditShipmentModal"
 import { showEditShipmentModal } from "../features/editShipmentModal/editShipmentModalSlice"
 import ConfirmationModal from "./ConfirmationModal"
+import { Navigate } from "react-router-dom"
 
 const SingleShipment = () => {
     const { shipmentId } = useParams()
     const {shipments} = useSelector(state => state.shipments)
     const dispatch = useDispatch()
     const shipment = shipments.find(shipment => shipment.id == shipmentId)
+
+    if (!shipment) {
+      return <Navigate to="Error"/>
+    }
 
     return (
       <>
