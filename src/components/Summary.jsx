@@ -25,37 +25,32 @@ const Summary = () => {
           <h1 className="fw-bold">Summary</h1>
         </Col>
       </Row>
-      <Row>
-        <Col>
+      <Row className="g-3"> 
+        <Col sm={6} md={3} >
           <Card className="bg-light">
-            <Card.Body>
-              Total Number of Shipments: {shipmentsTotalCount}
-            </Card.Body>
+            <Card.Header>Total Shipments:</Card.Header>
+            <Card.Body>{shipmentsTotalCount} Shipments</Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col sm={6} md={3}>
           <Card className="bg-secondary text-white">
-            <Card.Body>
-              Number of Shipments in Transit: {shipmentsCountByStatus.inTransit}
-            </Card.Body>
+            <Card.Header>In Transit:</Card.Header>
+            <Card.Body>{shipmentsCountByStatus.inTransit} Shipments</Card.Body>
           </Card>
         </Col>
-        <Col>
+        <Col sm={6} md={3}>
           <Card className="bg-danger text-white">
-            <Card.Body>
-              Number of Shipments Delayed: {shipmentsCountByStatus.delayed}
-            </Card.Body>
+            <Card.Header>Delayed:</Card.Header>
+            <Card.Body>{shipmentsCountByStatus.delayed} Shipments</Card.Body>
           </Card>
         </Col>
 
-        <Col>
+        <Col sm={6} md={3}>
           <Card className="bg-primary text-white">
-            <Card.Body>
-              Number of Shipments Delivered: {shipmentsCountByStatus.delivered}
-            </Card.Body>
+            <Card.Header>Delivered:</Card.Header>
+            <Card.Body>{shipmentsCountByStatus.delivered} Shipments</Card.Body>
           </Card>
         </Col>
-        
       </Row>
       {/* <Button variant="primary text-white fw-light">Hello world</Button>
       <Button variant="secondary text-white fw-bold">Hello world</Button>
