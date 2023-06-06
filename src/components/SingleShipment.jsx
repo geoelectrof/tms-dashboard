@@ -2,7 +2,7 @@ import { useParams } from "react-router"
 import { LinkContainer } from "react-router-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
 import { Button, Col, Row, Container, Badge } from "react-bootstrap";
-import { removeShipment, setShipmentStatusDelivered } from "../features/transports/shipmentsSlice"
+import { removeShipment, setShipmentStatusDelivered, setShipmentStatusUndelivered } from "../features/transports/shipmentsSlice"
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice"
 import EditShipmentModal from "./EditShipmentModal"
 import { showEditShipmentModal } from "../features/editShipmentModal/editShipmentModalSlice"
@@ -107,6 +107,16 @@ const SingleShipment = () => {
                 variant="primary text-white rounded-pill"
               >
                 <FaCalendarCheck /> Set status to delivered
+              </Button>
+            )}
+            {shipment.status == "delivered" && (
+              <Button
+                onClick={() =>
+                  dispatch(setShipmentStatusUndelivered(shipmentId))
+                }
+                variant="warning text-white rounded-pill"
+              >
+                <FaCalendarCheck /> Set status to undelivered
               </Button>
             )}
             <Button
