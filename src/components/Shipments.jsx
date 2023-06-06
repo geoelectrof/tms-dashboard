@@ -138,7 +138,7 @@ const Shipments = () => {
               return (
                 <ShipmentCard
                   {...shipment}
-                  // key={shipment.id}
+                  key={shipment.id}
                   // id={shipment.id}
                   // originAddress={shipment.originAddress}
                   // destinationAddress={shipment.destinationAddress}
@@ -154,7 +154,7 @@ const Shipments = () => {
             return (
               <ShipmentCard
                 {...shipment}
-                // key={shipment.id}
+                key={shipment.id}
                 // id={shipment.id}
                 // originAddress={shipment.originAddress}
                 // destinationAddress={shipment.destinationAddress}
