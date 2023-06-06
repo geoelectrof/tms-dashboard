@@ -23,9 +23,6 @@ function NewShipmentModal({ handleRemoveFilters }) {
 
     const onChange = (e) => {
       setValues({ ...values, [e.target.name]: e.target.value.toString() });
-      // console.log(e.target.name, e.target.value)
-      // console.log(values)
-      // console.log(typeof values.status)
     };
 
     return (
@@ -133,18 +130,6 @@ function NewShipmentModal({ handleRemoveFilters }) {
                 type="submit"
                 variant="primary text-white"
                 onClick={handleRemoveFilters}
-                // onClick={() => {
-                //   dispatch(hideNewShipmentModal());
-                //   dispatch(addShipment(values));
-                //   dispatch(openConfirmationModal("added"));
-                //   setValues({
-                //     customerName: "",
-                //     originAddress: "",
-                //     destinationAddress: "",
-                //     carrierName: "",
-                //     deliveryDate: "",
-                //   });
-                // }}
               >
                 Save Changes
               </Button>

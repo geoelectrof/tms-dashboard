@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom"
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,9 +7,6 @@ import { LinkContainer } from "react-router-bootstrap";
 const Navigation = () => {
   return (
     <nav>
-      {/* <NavLink to='/'>Summary</NavLink>
-        <NavLink to='/shipments'>Shipments</NavLink>
-        <NavLink to='/performance'>Performance</NavLink> */}
       <Navbar collapseOnSelect expand="md" bg="light" className="bg-light">
         <Container>
           <LinkContainer to="/">

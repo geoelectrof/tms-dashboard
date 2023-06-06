@@ -12,7 +12,6 @@ const warningModalSlice = createSlice({
   reducers: {
     showWarningModal: (state, actions) => {
       state.show = true;
-      console.log(actions.payload)
       state.warningMessage = actions.payload.warningMessage
       state.id = actions.payload.id
     },

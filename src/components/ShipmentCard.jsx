@@ -40,15 +40,6 @@ const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierNa
           </Col>
         </Row>
       </LinkContainer>
-      {/* <button
-        onClick={() => {
-          dispatch(
-            showWarningModal({ warningMessage: "Delete shipment?", id: id })
-          );
-        }}
-      >
-        delete
-      </button> */}
     </>
   );
 }

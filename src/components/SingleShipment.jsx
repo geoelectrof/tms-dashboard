@@ -2,8 +2,7 @@ import { useParams } from "react-router"
 import { LinkContainer } from "react-router-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
 import { Button, Col, Row, Container, Badge } from "react-bootstrap";
-import { removeShipment, setShipmentStatusDelivered, setShipmentStatusUndelivered } from "../features/transports/shipmentsSlice"
-import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice"
+import {setShipmentStatusDelivered, setShipmentStatusUndelivered } from "../features/transports/shipmentsSlice"
 import EditShipmentModal from "./EditShipmentModal"
 import { showEditShipmentModal } from "../features/editShipmentModal/editShipmentModalSlice"
 import ConfirmationModal from "./ConfirmationModal"
@@ -122,8 +121,6 @@ const SingleShipment = () => {
             <Button
               variant="danger text-white mx-4 rounded-pill"
               onClick={() => {
-                // dispatch(removeShipment(shipment.id))
-                // dispatch(openConfirmationModal("deleted"))
                 dispatch(
                   showWarningModal({
                     warningMessage: "Delete shipment?",

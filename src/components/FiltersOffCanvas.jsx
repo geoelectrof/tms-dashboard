@@ -18,14 +18,6 @@ const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handl
           <Offcanvas.Title>Filters</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {/* <Form.Check
-                type="checkbox"
-                id="ACS"
-                label="ACS"
-                value="ACS"
-                onChange={handleCarrierClick}
-            /> */}
-
           <h6>Carriers</h6>
           {carriers.map((item) => {
             const checked = filters.carrierName.includes(item);

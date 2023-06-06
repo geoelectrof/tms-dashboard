@@ -29,3 +29,24 @@
 .remove-filters-btn {
   border: none;
 }
+
+//FORM INPUT
+.formInput label{
+    font-size: 12px;
+    color: gray;
+}
+
+.formInput span{
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: none;
+}
+
+.formInput input:invalid[focused="true"]{
+    border: 1px solid red;
+}
+
+.formInput input:invalid[focused="true"] ~ span{
+    display: block;
+}

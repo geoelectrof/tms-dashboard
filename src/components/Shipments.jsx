@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { LinkContainer } from "react-router-bootstrap"
-import { Container, Row, Col, Button, Dropdown, Form } from "react-bootstrap"
+import { Container, Row, Col, Button} from "react-bootstrap"
 import ShipmentCard from "./ShipmentCard"
 import FiltersOffCanvas from "./FiltersOffCanvas"
 import NewShipmentModal from "./NewShipmentModal"
@@ -139,12 +138,6 @@ const Shipments = () => {
                 <ShipmentCard
                   {...shipment}
                   key={shipment.id}
-                  // id={shipment.id}
-                  // originAddress={shipment.originAddress}
-                  // destinationAddress={shipment.destinationAddress}
-                  // carrierName={shipment.carrierName}
-                  // status={shipment.status}
-                  // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
             })
@@ -155,12 +148,6 @@ const Shipments = () => {
               <ShipmentCard
                 {...shipment}
                 key={shipment.id}
-                // id={shipment.id}
-                // originAddress={shipment.originAddress}
-                // destinationAddress={shipment.destinationAddress}
-                // carrierName={shipment.carrierName}
-                // status={shipment.status}
-                // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
               />
             );
           })
