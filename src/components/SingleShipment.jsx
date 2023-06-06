@@ -10,7 +10,12 @@ import ConfirmationModal from "./ConfirmationModal"
 import { Navigate } from "react-router-dom"
 import { showWarningModal } from "../features/warningModal/warningModalSlice"
 import WarningModal from "./WarningModal"
-import { FaArrowLeft, FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaPencilAlt,
+  FaRegTrashAlt,
+  FaCalendarCheck,
+} from "react-icons/fa";
 
 
 const SingleShipment = () => {
@@ -35,7 +40,7 @@ const SingleShipment = () => {
           </Col>
           <Col className="text-end">
             <Button
-              variant="secondary text-white"
+              variant="secondary text-white rounded-pill"
               onClick={() => {
                 dispatch(showEditShipmentModal());
               }}
@@ -73,6 +78,7 @@ const SingleShipment = () => {
             <span className="text-muted fw-bold">Shipment status:</span>
             <h3 className="text-primary">
               <Badge
+                className="p-1"
                 bg={
                   shipment.status == "in transit"
                     ? "secondary"
@@ -84,6 +90,7 @@ const SingleShipment = () => {
                 {shipment.status.toUpperCase()}
               </Badge>
             </h3>
+            
           </Row>
         </Container>
         <Row>
@@ -91,13 +98,13 @@ const SingleShipment = () => {
             {shipment.status !== "delivered" && (
               <Button
                 onClick={() => dispatch(setShipmentStatusDelivered(shipmentId))}
-                variant="primary text-white"
+                variant="primary text-white rounded-pill"
               >
-                Set status to delivered
+                <FaCalendarCheck /> Set status to delivered
               </Button>
             )}
             <Button
-              variant="danger text-white mx-4"
+              variant="danger text-white mx-4 rounded-pill"
               onClick={() => {
                 // dispatch(removeShipment(shipment.id))
                 // dispatch(openConfirmationModal("deleted"))

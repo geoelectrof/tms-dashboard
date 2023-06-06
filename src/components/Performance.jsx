@@ -1,6 +1,14 @@
+import {Container, Row, Col } from "react-bootstrap"
+
 const Performance = () => {
   return (
-    <div>Performance</div>
+    <Container className="pt-4">
+        <Row>
+          <Col>
+            <h1 className="fw-bold">Performance</h1>
+          </Col>
+        </Row>
+    </Container>
   )
 }
 export default Performance

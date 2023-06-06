@@ -35,14 +35,21 @@ function EditShipmentModal({shipmentId}) {
     };
 
     return (
-        <>
+      <>
         <Modal show={show} onHide={() => dispatch(hideEditShipmentModal())}>
-            <Modal.Header closeButton>
+          <Modal.Header closeButton>
             <Modal.Title>EDIT SHIPMENT</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-            <Form>
-                <FormInput
+          </Modal.Header>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                dispatch(hideEditShipmentModal());
+                dispatch(editShipment(values));
+                dispatch(openConfirmationModal("updated"));
+              }}
+            >
+          <Modal.Body>
+              <FormInput
                 name="customerName"
                 type="text"
                 placeholder="Customer Name"
@@ -51,8 +58,8 @@ function EditShipmentModal({shipmentId}) {
                 required={true}
                 value={values.customerName}
                 onChange={onChange}
-                />
-                <FormInput
+              />
+              <FormInput
                 name="originAddress"
                 type="text"
                 placeholder="Origin Address"
@@ -61,8 +68,8 @@ function EditShipmentModal({shipmentId}) {
                 required={true}
                 value={values.originAddress}
                 onChange={onChange}
-                />
-                <FormInput
+              />
+              <FormInput
                 name="destinationAddress"
                 type="text"
                 placeholder="Destination Address"
@@ -71,8 +78,8 @@ function EditShipmentModal({shipmentId}) {
                 required={true}
                 value={values.destinationAddress}
                 onChange={onChange}
-                />
-                <FormInput
+              />
+              <FormInput
                 name="carrierName"
                 type="text"
                 placeholder="Carrier Name"
@@ -81,8 +88,8 @@ function EditShipmentModal({shipmentId}) {
                 required={true}
                 value={values.carrierName}
                 onChange={onChange}
-                />
-                <FormInput
+              />
+              <FormInput
                 name="deliveryDate"
                 type="date"
                 placeholder="Estimated Delivery Date"
@@ -91,13 +98,12 @@ function EditShipmentModal({shipmentId}) {
                 required={true}
                 value={values.deliveryDate}
                 onChange={onChange}
-                />
-            </Form>
-            </Modal.Body>
-            <Modal.Footer>
+              />
+          </Modal.Body>
+          <Modal.Footer>
             <Button
-                variant="secondary"
-                onClick={() => {
+              variant="secondary text-white"
+              onClick={() => {
                 dispatch(hideEditShipmentModal());
                 setValues({
                   customerName: shipment.customerName,
@@ -106,30 +112,17 @@ function EditShipmentModal({shipmentId}) {
                   carrierName: shipment.carrierName,
                   deliveryDate: shipment.deliveryDate,
                 });
-                }}
+              }}
             >
-                Close
+              Close
             </Button>
-            <Button
-                variant="primary"
-                onClick={() => {
-                dispatch(hideEditShipmentModal());
-                dispatch(editShipment(values));
-                dispatch(openConfirmationModal("updated"));
-                // setValues({
-                //     customerName: "",
-                //     originAddress: "",
-                //     destinationAddress: "",
-                //     carrierName: "",
-                //     deliveryDate: "",
-                // });
-                }}
-            >
-                Save Changes
+            <Button type="submit" variant="primary text-white">
+              Save Changes
             </Button>
-            </Modal.Footer>
+          </Modal.Footer>
+            </Form>
         </Modal>
-        </>
+      </>
     );
 }
 
