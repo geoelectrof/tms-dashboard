@@ -97,7 +97,7 @@ const Shipments = () => {
 
   return (
     <>
-      <Container className="pt-4"> 
+      <Container className="pt-4">
         <Row>
           <Col>
             <h1 className="fw-bold">Shipments</h1>
@@ -105,30 +105,39 @@ const Shipments = () => {
           <Col className="text-end">
             <Button
               variant="primary text-white fw-bold w-5 rounded-pill mt-2 new-shipment-btn"
-              onClick={()=>dispatch(showNewShipmentModal())}
+              onClick={() => dispatch(showNewShipmentModal())}
             >
               + New Shipment
             </Button>
-            <div>
-            </div>
+            <div></div>
           </Col>
         </Row>
         <Row>
           <Col>
             <Button
-              variant="outline-primary fw-bold rounded-pill mt-2 mb-2"
+              variant="primary text-white fw-bold rounded-pill mt-2 mb-2"
               onClick={() => dispatch(openFiltersOffCanvas())}
-              >
+            >
               <BsFilter />
-              Filters          
+              Filters
+            </Button>
+            <Button
+              variant="white text-danger remove-filters-btn  mt-2"
+              className={!checkFilters(filters) && "d-none"}
+              size="sm"
+              disabled={!checkFilters(filters)}
+              onClick={handleRemoveFilters}
+            >
+              Remove filters X
             </Button>
           </Col>
         </Row>
-        {!checkFilters(filters)
-          ? shipments.map((shipment) => {
+        {!checkFilters(filters) ? (
+          shipments
+            .map((shipment) => {
               return (
                 <ShipmentCard
-                {...shipment}
+                  {...shipment}
                   // key={shipment.id}
                   // id={shipment.id}
                   // originAddress={shipment.originAddress}
@@ -138,26 +147,30 @@ const Shipments = () => {
                   // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
                 />
               );
-            }).reverse()
-          : filteredShipments.length 
-            ? (filteredShipments.map((shipment) => {
-              return (
-                <ShipmentCard
+            })
+            .reverse()
+        ) : filteredShipments.length ? (
+          filteredShipments.map((shipment) => {
+            return (
+              <ShipmentCard
                 {...shipment}
-                  // key={shipment.id}
-                  // id={shipment.id}
-                  // originAddress={shipment.originAddress}
-                  // destinationAddress={shipment.destinationAddress}
-                  // carrierName={shipment.carrierName}
-                  // status={shipment.status}
-                  // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
-                />
-              );
-            }))
-            : <div className="text-center display-6 mt-5">No shipments to display</div>
-        }      
+                // key={shipment.id}
+                // id={shipment.id}
+                // originAddress={shipment.originAddress}
+                // destinationAddress={shipment.destinationAddress}
+                // carrierName={shipment.carrierName}
+                // status={shipment.status}
+                // handleRemoveShipment={()=>dispatch(removeShipment(shipment.id))}
+              />
+            );
+          })
+        ) : (
+          <div className="text-center display-6 mt-5">
+            No shipments to display
+          </div>
+        )}
       </Container>
-      <FiltersOffCanvas 
+      <FiltersOffCanvas
         filters={filters}
         carriers={carriers}
         status={status}
@@ -166,9 +179,7 @@ const Shipments = () => {
         checkFilters={checkFilters}
         handleRemoveFilters={handleRemoveFilters}
       />
-      <NewShipmentModal
-        handleRemoveFilters={handleRemoveFilters}
-      />
+      <NewShipmentModal handleRemoveFilters={handleRemoveFilters} />
       <WarningModal />
       <ConfirmationModal />
     </>

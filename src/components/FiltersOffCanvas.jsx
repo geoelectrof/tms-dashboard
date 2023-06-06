@@ -72,7 +72,7 @@ const FiltersOffCanvas = ({ filters, carriers, status, handleCarrierClick, handl
             disabled={!checkFilters(filters)}
             onClick={handleRemoveFilters}
           >
-            Remove filters
+            Remove filters X
           </Button>
         </Offcanvas.Body>
       </Offcanvas>
