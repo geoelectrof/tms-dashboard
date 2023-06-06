@@ -1,7 +1,7 @@
 import { useParams } from "react-router"
 import { LinkContainer } from "react-router-bootstrap"
 import { useSelector, useDispatch } from "react-redux"
-import { Button, Col, Row, Container } from "react-bootstrap";
+import { Button, Col, Row, Container, Badge } from "react-bootstrap";
 import { removeShipment, setShipmentStatusDelivered } from "../features/transports/shipmentsSlice"
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice"
 import EditShipmentModal from "./EditShipmentModal"
@@ -71,7 +71,19 @@ const SingleShipment = () => {
           </Row>
           <Row className="py-2">
             <span className="text-muted fw-bold">Shipment status:</span>
-            <h3 className="text-primary">{shipment.status}</h3>
+            <h3 className="text-primary">
+              <Badge
+                bg={
+                  shipment.status == "in transit"
+                    ? "secondary"
+                    : shipment.status == "delivered"
+                    ? "primary"
+                    : "danger"
+                }
+              >
+                {shipment.status.toUpperCase()}
+              </Badge>
+            </h3>
           </Row>
         </Container>
         <Row>
@@ -99,7 +111,6 @@ const SingleShipment = () => {
             >
               <FaRegTrashAlt /> Delete shipment
             </Button>
-
           </Col>
         </Row>
         <EditShipmentModal shipmentId={shipmentId} />

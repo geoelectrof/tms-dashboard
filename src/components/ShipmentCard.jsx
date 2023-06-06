@@ -1,5 +1,5 @@
 import { LinkContainer } from "react-router-bootstrap";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Badge } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { removeShipment } from "../features/transports/shipmentsSlice";
 import { openConfirmationModal } from "../features/confirmationModal/confirmationModalSlice";
@@ -33,7 +33,7 @@ const ShipmentCard = ( {id, originAddress, destinationAddress, status, carrierNa
             <span className="fs-6 text-primary fw-bold">{carrierName}</span>
           </Col>
           <Col sm={12} md={2}>
-            <span className="text-end">{status}</span>
+            <Badge bg={(status == "in transit") ? "secondary" : (status == "delivered") ? "primary" : "danger"}>{status.toUpperCase()}</Badge>
           </Col>
           <Col className="text-end" sm={12} md={1}>
             <FaArrowRight className="align-end" />
