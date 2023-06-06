@@ -3,6 +3,8 @@ import shipmentsData from '../../data/shipments.json'
 
 const initialState = {
     shipments: shipmentsData,
+    totalCost: 0,
+    avgCost: 0
 }
 
 const shipmentsSlice = createSlice({
@@ -76,6 +78,14 @@ const shipmentsSlice = createSlice({
                     s.status = "delayed"
                 }
             })
+        }, 
+        calcPerformance: (state) => {
+            let totalCost = 0
+            state.shipments.forEach(s => {
+                totalCost += s.cost
+            })
+            state.totalCost = totalCost
+            state.shipments.length ? state.avgCost = totalCost/state.shipments.length : state.avgCost = 0
         }
     }
 })
@@ -83,4 +93,4 @@ const shipmentsSlice = createSlice({
 // console.log(shipmentsSlice)
 
 export default shipmentsSlice.reducer
-export const { addShipment, removeShipment, editShipment, setShipmentStatusDelivered, checkStatusChange } = shipmentsSlice.actions
+export const { addShipment, removeShipment, editShipment, setShipmentStatusDelivered, checkStatusChange, calcPerformance } = shipmentsSlice.actions
