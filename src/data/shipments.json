@@ -5,6 +5,7 @@
     "originAddress": "Athens",
     "destinationAddress": "Thessaloniki",
     "carrierName": "DHL",
+    "cost": 10,
     "deliveryDate": "2023-06-25",
     "status": "in transit"
   },
@@ -14,6 +15,7 @@
     "originAddress": "Athens",
     "destinationAddress": "Thessaloniki",
     "carrierName": "ACS",
+    "cost": 5,
     "deliveryDate": "2023-03-25",
     "status": "delivered"
   },
@@ -23,6 +25,7 @@
     "originAddress": "London",
     "destinationAddress": "Paris",
     "carrierName": "DHL",
+    "cost": 50,
     "deliveryDate": "2023-05-10",
     "status": "delayed"
   },
@@ -32,6 +35,7 @@
     "originAddress": "New York",
     "destinationAddress": "Athens",
     "carrierName": "UPS",
+    "cost": 30,
     "deliveryDate": "2023-06-15",
     "status": "in transit"
   },
@@ -41,6 +45,7 @@
     "originAddress": "New York",
     "destinationAddress": "Athens",
     "carrierName": "UPS",
+    "cost": 15,
     "deliveryDate": "2023-06-02",
     "status": "in transit"
   }

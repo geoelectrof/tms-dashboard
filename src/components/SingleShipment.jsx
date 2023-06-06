@@ -71,6 +71,10 @@ const SingleShipment = () => {
             <h3 className="text-primary">{shipment.carrierName}</h3>
           </Row>
           <Row className="py-2">
+            <span className="text-muted fw-bold">Shipment Cost:</span>
+            <h3 className="text-primary">{shipment.cost}€</h3>
+          </Row>
+          <Row className="py-2">
             <span className="text-muted fw-bold">Estimated delivery date:</span>
             <h3 className="text-primary">
               {" "}

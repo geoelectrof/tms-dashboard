@@ -17,6 +17,7 @@ function NewShipmentModal({ handleRemoveFilters }) {
       originAddress: "",
       destinationAddress: "",
       carrierName: "",
+      cost: "",
       deliveryDate: "",
     })
 
@@ -44,6 +45,7 @@ function NewShipmentModal({ handleRemoveFilters }) {
                 originAddress: "",
                 destinationAddress: "",
                 carrierName: "",
+                cost: "",
                 deliveryDate: "",
               });
             }}
@@ -90,6 +92,16 @@ function NewShipmentModal({ handleRemoveFilters }) {
                 onChange={onChange}
               />
               <FormInput
+                name="cost"
+                type="number"
+                placeholder="Cost"
+                errorMessage="Please add the cost of the shipment!"
+                label="Shipment Cost €"
+                required={true}
+                value={values.cost}
+                onChange={onChange}
+              />
+              <FormInput
                 name="deliveryDate"
                 type="date"
                 placeholder="dd-mm-yyyy"
@@ -110,6 +122,7 @@ function NewShipmentModal({ handleRemoveFilters }) {
                     originAddress: "",
                     destinationAddress: "",
                     carrierName: "",
+                    cost: "",
                     deliveryDate: "",
                   });
                 }}

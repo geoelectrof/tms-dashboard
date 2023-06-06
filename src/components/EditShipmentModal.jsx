@@ -24,6 +24,7 @@ function EditShipmentModal({shipmentId}) {
         originAddress: shipment.originAddress,
         destinationAddress: shipment.destinationAddress,
         carrierName: shipment.carrierName,
+        cost: shipment.cost,
         deliveryDate: shipment.deliveryDate,
     });
 
@@ -40,15 +41,15 @@ function EditShipmentModal({shipmentId}) {
           <Modal.Header closeButton>
             <Modal.Title>EDIT SHIPMENT</Modal.Title>
           </Modal.Header>
-            <Form
-              onSubmit={(e) => {
-                e.preventDefault();
-                dispatch(hideEditShipmentModal());
-                dispatch(editShipment(values));
-                dispatch(openConfirmationModal("updated"));
-              }}
-            >
-          <Modal.Body>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              dispatch(hideEditShipmentModal());
+              dispatch(editShipment(values));
+              dispatch(openConfirmationModal("updated"));
+            }}
+          >
+            <Modal.Body>
               <FormInput
                 name="customerName"
                 type="text"
@@ -90,6 +91,16 @@ function EditShipmentModal({shipmentId}) {
                 onChange={onChange}
               />
               <FormInput
+                name="cost"
+                type="number"
+                placeholder="Cost"
+                errorMessage="Please add the cost of the shipment!"
+                label="Shipment Cost €"
+                required={true}
+                value={values.cost}
+                onChange={onChange}
+              />
+              <FormInput
                 name="deliveryDate"
                 type="date"
                 placeholder="Estimated Delivery Date"
@@ -99,28 +110,29 @@ function EditShipmentModal({shipmentId}) {
                 value={values.deliveryDate}
                 onChange={onChange}
               />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary text-white"
-              onClick={() => {
-                dispatch(hideEditShipmentModal());
-                setValues({
-                  customerName: shipment.customerName,
-                  originAddress: shipment.originAddress,
-                  destinationAddress: shipment.destinationAddress,
-                  carrierName: shipment.carrierName,
-                  deliveryDate: shipment.deliveryDate,
-                });
-              }}
-            >
-              Close
-            </Button>
-            <Button type="submit" variant="primary text-white">
-              Save Changes
-            </Button>
-          </Modal.Footer>
-            </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                variant="secondary text-white"
+                onClick={() => {
+                  dispatch(hideEditShipmentModal());
+                  setValues({
+                    customerName: shipment.customerName,
+                    originAddress: shipment.originAddress,
+                    destinationAddress: shipment.destinationAddress,
+                    carrierName: shipment.carrierName,
+                    cost: shipment.cost,
+                    deliveryDate: shipment.deliveryDate,
+                  });
+                }}
+              >
+                Close
+              </Button>
+              <Button type="submit" variant="primary text-white">
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Form>
         </Modal>
       </>
     );
