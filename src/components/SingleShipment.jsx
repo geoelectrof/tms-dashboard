@@ -72,7 +72,10 @@ const SingleShipment = () => {
           </Row>
           <Row className="py-2">
             <span className="text-muted fw-bold">Estimated delivery date:</span>
-            <h3 className="text-primary"> {shipment.deliveryDate}</h3>
+            <h3 className="text-primary">
+              {" "}
+              {new Date(shipment.deliveryDate).toLocaleDateString("el-GR")}
+            </h3>
           </Row>
           <Row className="py-2">
             <span className="text-muted fw-bold">Shipment status:</span>
@@ -90,7 +93,6 @@ const SingleShipment = () => {
                 {shipment.status.toUpperCase()}
               </Badge>
             </h3>
-            
           </Row>
         </Container>
         <Row>
