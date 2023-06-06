@@ -12,7 +12,6 @@ const WarningModal = () => {
     const show = useSelector(state => state.warningModal.show)
     const warningMessage = useSelector(state => state.warningModal.warningMessage)
     const id = useSelector(state => state.warningModal.id)
-    console.log('id', id)
 
     return (
         <Modal

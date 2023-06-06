@@ -12,7 +12,6 @@ import { BsFilter } from "react-icons/bs";
 
 const Shipments = () => {
   const { shipments } = useSelector((state) => state.shipments);
-  console.log('shipments', shipments)
 
   const dispatch = useDispatch()
   

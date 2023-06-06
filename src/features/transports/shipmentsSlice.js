@@ -103,7 +103,5 @@ const shipmentsSlice = createSlice({
     }
 })
 
-// console.log(shipmentsSlice)
-
 export default shipmentsSlice.reducer
 export const { addShipment, removeShipment, editShipment, setShipmentStatusDelivered, setShipmentStatusUndelivered, checkStatusChange, calcPerformance } = shipmentsSlice.actions

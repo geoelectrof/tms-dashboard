@@ -7,7 +7,6 @@ const Performance = () => {
   const dispatch = useDispatch()
   dispatch(calcPerformance())
   const {totalCost, avgCost} = useSelector(state => state.shipments)
-  console.log(avgCost)
 
   return (
     <Container className="pt-4">
