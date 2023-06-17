@@ -17,7 +17,7 @@ const shipmentsSlice = createSlice({
             let { id: newid } = state.shipments.reduce((prev, current) => {
                 return prev.id > current.id ? prev : current;
             });
-            newid = newid + 1;
+            newid = Number(newid) + 1;
 
             let today = new Date()
             today.setHours(0, 0, 0, 0)
@@ -95,7 +95,7 @@ const shipmentsSlice = createSlice({
         calcPerformance: (state) => {
             let totalCost = 0
             state.shipments.forEach(s => {
-                totalCost += s.cost
+                totalCost += Number(s.cost)
             })
             state.totalCost = totalCost
             state.shipments.length ? state.avgCost = totalCost/state.shipments.length : state.avgCost = 0
