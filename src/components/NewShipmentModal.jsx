@@ -92,8 +92,11 @@ function NewShipmentModal({ handleRemoveFilters }) {
                 name="cost"
                 type="number"
                 placeholder="Cost"
-                errorMessage="Please add the cost of the shipment!"
+                errorMessage="Please add a two decimals cost of shipment!"
                 label="Shipment Cost €"
+                min={0}
+                step={0.01}
+                pattern="^\d*(\.\d{0,2})?$"
                 required={true}
                 value={values.cost}
                 onChange={onChange}

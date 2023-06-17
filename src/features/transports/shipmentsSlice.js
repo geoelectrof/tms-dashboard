@@ -97,8 +97,8 @@ const shipmentsSlice = createSlice({
             state.shipments.forEach(s => {
                 totalCost += Number(s.cost)
             })
-            state.totalCost = totalCost
-            state.shipments.length ? state.avgCost = totalCost/state.shipments.length : state.avgCost = 0
+            state.totalCost = totalCost.toFixed(2)
+            state.shipments.length ? state.avgCost = (totalCost/state.shipments.length).toFixed(2) : state.avgCost = 0
         }
     }
 })
